@@ -4,40 +4,44 @@
  */
 package frontend;
 
+import projetofinal.Instrumento;
 import projetofinal.GestaoSistema;
-import projetofinal.Utilizador;
+import projetofinal.Requisicao;
 import java.util.ArrayList;
-
 
 /**
  *
  * @author marco
  */
-public class listaUtilizadores extends javax.swing.JFrame {
+public class fazerRequisicao extends javax.swing.JFrame {
 
     /**
-     * Creates new form listaUtilizadores
+     * Creates new form fazerRequisicao
      */
-    
+   
     GestaoSistema sistema;
     
-    public listaUtilizadores(GestaoSistema lista) {
+    public fazerRequisicao(GestaoSistema lista) {
         initComponents();
         this.sistema = lista;
         this.preencherTabela();
     }
     
-
     public void preencherTabela() {
-        ArrayList<Utilizador> utilizadores = this.sistema.getUtilizadores();
-       for(int i = 0; i < utilizadores.size(); i++) {
-            if(utilizadores.get(i) != null) {
-                this.tbUtilizadores.setValueAt(utilizadores.get(i).getUserName(), i, 0);
-                this.tbUtilizadores.setValueAt(utilizadores.get(i).getSenha(), i, 1);
-                this.tbUtilizadores.setValueAt(utilizadores.get(i).getClass().getSimpleName(), i, 2);
+        ArrayList<Instrumento> instrumentos = this.sistema.getInstrumentos();
+        for(int i = 0; i < instrumentos.size(); i++) {
+            if(instrumentos.get(i) != null) {
+                this.tbInstrumento.setValueAt(instrumentos.get(i).getNome(), i, 0);
+                this.tbInstrumento.setValueAt(instrumentos.get(i).getTipo(), i, 1);
+                if (instrumentos.get(i).getEstado() == true){
+                    this.tbInstrumento.setValueAt("Disponivel", i, 2);
+                }
+                else{
+                    this.tbInstrumento.setValueAt("Indisponivel", i, 2);
+                }
             }
         }
-    } 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,40 +52,15 @@ public class listaUtilizadores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUtilizadores = new javax.swing.JTable();
+        tbInstrumento = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setText("Deletar");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setText("Tabela de Utilizadores");
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        tbUtilizadores.setModel(new javax.swing.table.DefaultTableModel(
+        tbInstrumento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -94,7 +73,7 @@ public class listaUtilizadores extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Username", "Password", "Tipo"
+                "Nome", "Tipo", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -105,7 +84,21 @@ public class listaUtilizadores extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbUtilizadores);
+        jScrollPane1.setViewportView(tbInstrumento);
+
+        jButton1.setText("Voltar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Requirir instrumento(s)");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,30 +108,24 @@ public class listaUtilizadores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(156, 156, 156))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)
+                        .addGap(14, 14, 14))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
-                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addGap(22, 22, 22))
+                    .addComponent(jButton2))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -146,8 +133,16 @@ public class listaUtilizadores extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //Requisicao req = new Requisicao();
+        
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,9 +150,8 @@ public class listaUtilizadores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbUtilizadores;
+    private javax.swing.JTable tbInstrumento;
     // End of variables declaration//GEN-END:variables
 }

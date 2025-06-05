@@ -4,6 +4,12 @@
  */
 package frontend;
 
+import projetofinal.GestaoSistema;
+import projetofinal.Utilizador;
+import projetofinal.Produtor;
+import projetofinal.Musico;
+import java.util.ArrayList;
+
 /**
  *
  * @author marco
@@ -13,8 +19,12 @@ public class telaLogin extends javax.swing.JFrame {
     /**
      * Creates new form Administrador
      */
-    public telaLogin() {
+    
+    GestaoSistema sistema;
+
+    public telaLogin(GestaoSistema lista) {
         initComponents();
+        this.sistema = lista;
     }
 
     /**
@@ -138,9 +148,35 @@ public class telaLogin extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        registoAdmin ra = new registoAdmin();
-        ra.setVisible(true);
-        this.setVisible(false);
+        //Abrir a janela "registoAdmin"
+        String user = username.getText();
+        String pass = password.getText();
+        if(user.equals("admin") && pass.equals("12345")){
+            registoAdmin ra = new registoAdmin(sistema);
+            ra.setVisible(true);
+            this.setVisible(false);
+        } 
+        else{
+            for (Utilizador u : sistema.getUtilizadores()) {
+                if (u.getUserName().equals(user)){
+                    if (u.getSenha().equals(pass)) {
+                        if (u instanceof Produtor) {
+                            telaProdutor tp = new telaProdutor(sistema);
+                            tp.setVisible(true);
+                            this.setVisible(false);
+                            return;                            
+                        } else if (u instanceof Musico) {
+                            Musico m = (Musico) u; // Cast para Musico
+                            telaMusico tm = new telaMusico(sistema,m);
+                            tm.setVisible(true);
+                            this.setVisible(false);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

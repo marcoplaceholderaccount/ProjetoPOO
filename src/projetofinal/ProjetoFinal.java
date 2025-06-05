@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package projetofinal;
-import frontend.telaLogin;
+import frontend.*;
 
 /**
  *
@@ -14,9 +14,14 @@ public class ProjetoFinal {
     /**
      * @param args the command line arguments
      */
+
+    
     public static void main(String[] args) {
         // TODO code application logic here
-        telaLogin adm = new telaLogin();
+        
+        GestaoSistema sistema = new GestaoSistema();
+        
+        telaLogin adm = new telaLogin(sistema);
         adm.setVisible(true);
         
     }
