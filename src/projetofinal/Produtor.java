@@ -26,13 +26,14 @@ public class Produtor extends Utilizador {
     setNomep(nome);
     }
  
-
+/*
 public Album iniciarEdicaoAlbum(String titulo, String dataEdicao, String tipo) {
     Album novoAlbum = new Album(titulo, dataEdicao, tipo, this);
     albunsProduzidos.add(novoAlbum);
     System.out.println("Álbum criado com sucesso: " + titulo);
     return novoAlbum;
 }
+*/
   
     public void editarAlbum(Album album, String novoTitulo, String novaData, String novoTipo) {
     if (albunsProduzidos.contains(album)) {

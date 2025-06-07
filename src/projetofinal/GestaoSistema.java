@@ -11,6 +11,7 @@ public class GestaoSistema {
     public ArrayList<Produtor> produtor;
     public ArrayList<Utilizador> utilizadores;
     public ArrayList<Musica> musicas;
+    public ArrayList<Album> albuns;
 
     //  Construtores
     public GestaoSistema() {
@@ -20,8 +21,19 @@ public class GestaoSistema {
     this.produtor = new ArrayList<>();
     this.utilizadores = new ArrayList<>();
     this.musicas = new ArrayList<>();
+    this.albuns = new ArrayList<>();
 }
     //Metodos
+    
+    public ArrayList<Album> getAlbuns() {
+        return albuns;
+    }
+    
+    public void adicionarAlbum(Album album){
+        albuns.add(album);
+        System.out.println("Album adicionado com sucesso: " + album.getTitulo());
+    }
+    
     public ArrayList<Instrumento> getInstrumentos() {
         return instrumentos;
     }

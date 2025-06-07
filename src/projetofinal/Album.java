@@ -7,17 +7,15 @@ public class Album {
     private String dataEdicao;
     private String tipo;
     private Produtor produtor;
-    private ArrayList<Musica> musicas;
-    private ArrayList<Sessao> sessoes;
+    public ArrayList<Musica> musicas;
+    public ArrayList<Sessao> sessoes;
 
     
     
     
-    public Album(String titulo, String dataEdicao, String tipo, Produtor produtor){
+    public Album(String titulo, String tipo, Produtor produtor){
         this.titulo= titulo;
-        this.dataEdicao= dataEdicao;
         this.tipo= tipo;
-        this.produtor= produtor;
         this.musicas= new ArrayList<>();
         this.sessoes= new ArrayList<>();
       
@@ -68,9 +66,6 @@ public class Album {
     public void setSessoes(ArrayList<Sessao> sessoes) {
         this.sessoes = sessoes;
     }
-    
-    
-
     
     //adicionar musica no album
     public void adicionarMusica(Musica musica){

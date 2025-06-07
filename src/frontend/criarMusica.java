@@ -257,7 +257,7 @@ public class criarMusica extends javax.swing.JFrame {
 
             //criar objeto musica
             Musica novaMusica = new Musica(titulo, duracao);
-            novaMusica.musicos = new ArrayList<>();
+            //novaMusica.musicos = new ArrayList<>();
 
             //adicionar musicos selecionados
             ArrayList<Utilizador> utilizadores = sistema.getUtilizadores();
