@@ -5,12 +5,13 @@ import java.util.ArrayList;
 public class Produtor extends Utilizador {
     public String nomep;
     public Sessao sessao;
-    private ArrayList<Album> albunsProduzidos = new ArrayList<>();
+    private ArrayList<Album> albunsProduzidos;
    
     
     public Produtor(String username ,String senha,String nomep){
-    super(username,senha);
-    this.nomep = nomep;
+        super(username,senha);
+        this.nomep = nomep;
+        this.albunsProduzidos = new ArrayList<>();
 
     }
      
@@ -22,8 +23,12 @@ public class Produtor extends Utilizador {
     public void setNomep(String nomep) {
         this.nomep = nomep;
     }
-    public void editarDados(String nome) {
-    setNomep(nome);
+    public void editarDados(String novoNome) {
+    setNomep(novoNome);
+    }
+    
+    public ArrayList<Album> getAlbunsProduzidos(){
+        return albunsProduzidos;
     }
  
 /*
@@ -33,8 +38,9 @@ public Album iniciarEdicaoAlbum(String titulo, String dataEdicao, String tipo) {
     System.out.println("Álbum criado com sucesso: " + titulo);
     return novoAlbum;
 }
-*/
   
+    
+PARA SER TESTADO!!!!!!!!!
     public void editarAlbum(Album album, String novoTitulo, String novaData, String novoTipo) {
     if (albunsProduzidos.contains(album)) {
         album.setTitulo(novoTitulo);
@@ -88,5 +94,10 @@ public void listarSessoesAgendadasPorData(String data) {
         System.out.println("Nenhuma sessão agendada encontrada para esse dia.");
     }
 }
+
+PARA SER TESTADO!!!!!!!!!*/
+
+
+
 
 }
