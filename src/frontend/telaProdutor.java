@@ -4,6 +4,7 @@
  */
 package frontend;
 import projetofinal.GestaoSistema;
+import projetofinal.Produtor;
 
 /**
  *
@@ -12,13 +13,15 @@ import projetofinal.GestaoSistema;
 public class telaProdutor extends javax.swing.JFrame {
     
     GestaoSistema sistema;
+    public Produtor produtor;
     
     /**
      * Creates new form telaProdtu
      */
-    public telaProdutor(GestaoSistema lista) {
+    public telaProdutor(GestaoSistema lista, Produtor produtor) {
         initComponents();
         this.sistema = lista;
+        this.produtor = produtor;
     }
 
     /**
@@ -35,6 +38,9 @@ public class telaProdutor extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,8 +68,29 @@ public class telaProdutor extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Edicao");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem2.setText("Gerir album");
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Dados");
+
+        jMenuItem3.setText("Ver/Editar seus dados");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -105,6 +132,18 @@ public class telaProdutor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        // TODO add your handling code here:
+        edicaoAlbum ea = new edicaoAlbum();
+        ea.setVisible(true);
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        dadosProdutor dp = new dadosProdutor(produtor);
+        dp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -114,7 +153,10 @@ public class telaProdutor extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
 }

@@ -161,7 +161,8 @@ public class telaLogin extends javax.swing.JFrame {
                 if (u.getUserName().equals(user)){
                     if (u.getSenha().equals(pass)) {
                         if (u instanceof Produtor) {
-                            telaProdutor tp = new telaProdutor(sistema);
+                            Produtor p = (Produtor) u;
+                            telaProdutor tp = new telaProdutor(sistema,p);
                             tp.setVisible(true);
                             this.setVisible(false);
                             return;                            
