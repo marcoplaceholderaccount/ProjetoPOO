@@ -4,10 +4,15 @@
  */
 package frontend;
 
+import javax.swing.*;
+
 import projetofinal.Instrumento;
 import projetofinal.GestaoSistema;
 import projetofinal.Requisicao;
 import java.util.ArrayList;
+import projetofinal.Album;
+import projetofinal.Sessao;
+import projetofinal.Musico;
 
 /**
  *
@@ -18,16 +23,21 @@ public class fazerRequisicao extends javax.swing.JFrame {
     /**
      * Creates new form fazerRequisicao
      */
-   
     GestaoSistema sistema;
+    Musico musico;
+    private DefaultListModel<String> modelInstrumentosSelecionados;
     
-    public fazerRequisicao(GestaoSistema lista) {
-        initComponents();
+    public fazerRequisicao(GestaoSistema lista, Musico musico) {
         this.sistema = lista;
+        this.musico = musico;
+        initComponents();
         this.preencherTabela();
+        modelInstrumentosSelecionados = new DefaultListModel<>();
+        lstInstrumentosSelecionados.setModel(modelInstrumentosSelecionados);
     }
     
     public void preencherTabela() {
+        //preencher tabela de instrumentos
         ArrayList<Instrumento> instrumentos = this.sistema.getInstrumentos();
         for(int i = 0; i < instrumentos.size(); i++) {
             if(instrumentos.get(i) != null) {
@@ -38,6 +48,21 @@ public class fazerRequisicao extends javax.swing.JFrame {
                 }
                 else{
                     this.tbInstrumento.setValueAt("Indisponivel", i, 2);
+                }
+            }
+        }
+        //preencher tabela de sessoes
+        ArrayList<Album> albuns_musico = musico.getAlbunsAssociados(sistema.getAlbuns());
+        ArrayList<Sessao> sessoes_musico = musico.getSessoesAgendadas(albuns_musico);
+        for(int i = 0; i < sessoes_musico.size(); i++) {
+            if(sessoes_musico.get(i) != null) {
+                this.tbSessoesMusico.setValueAt(sessoes_musico.get(i).getAlbum().getTitulo(), i, 0);
+                this.tbSessoesMusico.setValueAt(sessoes_musico.get(i).getDataI(), i, 1);
+                if(sessoes_musico.get(i).isConclusao()){
+                    this.tbSessoesMusico.setValueAt("Concluido",i,2);
+                }
+                else{
+                    this.tbSessoesMusico.setValueAt("Em andamento",i,2);
                 }
             }
         }
@@ -56,11 +81,29 @@ public class fazerRequisicao extends javax.swing.JFrame {
         tbInstrumento = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbSessoesMusico = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        lstInstrumentosSelecionados = new javax.swing.JList<>();
+        adicionar = new javax.swing.JButton();
+        remover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tbInstrumento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -93,10 +136,69 @@ public class fazerRequisicao extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Requirir instrumento(s)");
+        jButton2.setText("Requirir instrumento");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        tbSessoesMusico.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Titulo", "Data agendada", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbSessoesMusico);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Lista de sessoes agendadas");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Lista de instrumentos");
+
+        jScrollPane3.setViewportView(lstInstrumentosSelecionados);
+
+        adicionar.setText("Adicionar");
+        adicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarActionPerformed(evt);
+            }
+        });
+
+        remover.setText("Remover");
+        remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerActionPerformed(evt);
             }
         });
 
@@ -105,27 +207,59 @@ public class fazerRequisicao extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(276, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(206, 206, 206)
+                .addComponent(jButton1)
+                .addGap(14, 14, 14))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(14, 14, 14))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(136, 136, 136)
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(adicionar)
+                            .addComponent(remover, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(jLabel1)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(27, 27, 27))
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(adicionar)
+                        .addGap(28, 28, 28)
+                        .addComponent(remover)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,20 +272,68 @@ public class fazerRequisicao extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //Requisicao req = new Requisicao();
+        DefaultListModel<String> model = (DefaultListModel<String>) lstInstrumentosSelecionados.getModel();
+        ArrayList<Album> albuns_musico = musico.getAlbunsAssociados(sistema.getAlbuns());
+        ArrayList<Sessao> sessoes_musico = musico.getSessoesAgendadas(albuns_musico);
         
+        int selecao = tbSessoesMusico.getSelectedRow();
         
+        Requisicao novaReq = new Requisicao(sessoes_musico.get(selecao),musico);
+        
+        ArrayList<Instrumento> instrumentos = sistema.getInstrumentos();
+            for (int i = 0; i < model.size(); i++) {
+                String nomeInstrumento = model.getElementAt(i);
+                for (Instrumento ins : instrumentos) {
+                    if (ins.getNome().equals(nomeInstrumento)) {
+                        novaReq.instrumentos_req.add(ins);
+                        break;
+                    }
+                }
+            }
+            
+        sistema.adicionarRequisicao(novaReq);
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void adicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tbInstrumento.getSelectedRow();
+        if (selectedRow >= 0) {
+            String nomeInstrumento = (String) tbInstrumento.getValueAt(selectedRow, 0);
+            if (!modelInstrumentosSelecionados.contains(nomeInstrumento)) {
+                modelInstrumentosSelecionados.addElement(nomeInstrumento);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um músico na tabela primeiro.");
+        }
+    }//GEN-LAST:event_adicionarActionPerformed
+
+    private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = lstInstrumentosSelecionados.getSelectedIndex();
+        if (selectedIndex >= 0) {
+            modelInstrumentosSelecionados.remove(selectedIndex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um músico na lista para remover.");
+        }
+    }//GEN-LAST:event_removerActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adicionar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<String> lstInstrumentosSelecionados;
+    private javax.swing.JButton remover;
     private javax.swing.JTable tbInstrumento;
+    private javax.swing.JTable tbSessoesMusico;
     // End of variables declaration//GEN-END:variables
 }

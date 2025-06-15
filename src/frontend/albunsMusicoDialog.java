@@ -1,42 +1,47 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package frontend;
-
+import projetofinal.Musico;
 import projetofinal.GestaoSistema;
 import projetofinal.Album;
+import projetofinal.Sessao;
 import java.util.ArrayList;
 
 /**
  *
  * @author marco
  */
-public class listaAlbuns extends javax.swing.JFrame {
+public class albunsMusicoDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form listaAlbuns
+     * Creates new form albunsMusicoDialog
      */
-    
     GestaoSistema sistema;
+    Musico musico;
     
-    public listaAlbuns(GestaoSistema lista) {
-        initComponents();
+    
+    public albunsMusicoDialog(java.awt.Frame parent, boolean modal, Musico musico, GestaoSistema lista) {
+        super(parent, modal);
         this.sistema = lista;
-        this.preencherTabela();
+        this.musico = musico;
+        initComponents();
+        preencherTabela();
     }
     
-    public void preencherTabela() {
-        ArrayList<Album> albuns = this.sistema.getAlbuns();
-        for(int i = 0; i < albuns.size(); i++) {
-            if(albuns.get(i) != null) {
-                this.tbAlbum.setValueAt(albuns.get(i).getTitulo(), i, 0);
-                this.tbAlbum.setValueAt(albuns.get(i).getTipo(), i, 1);
-                if(albuns.get(i).getEstado()){
-                    this.tbAlbum.setValueAt("Concluido",i,2);
+    public void preencherTabela(){
+        ArrayList<Album> albuns_musico = musico.getAlbunsAssociados(sistema.getAlbuns());
+        ArrayList<Sessao> sessoes_musico = musico.getSessoesAgendadas(albuns_musico);
+        for(int i = 0; i < sessoes_musico.size(); i++) {
+            if(sessoes_musico.get(i) != null) {
+                this.tbSessoesMusico.setValueAt(sessoes_musico.get(i).getAlbum().getTitulo(), i, 0);
+                this.tbSessoesMusico.setValueAt(sessoes_musico.get(i).getDataI(), i, 1);
+                if(sessoes_musico.get(i).isConclusao()){
+                    this.tbSessoesMusico.setValueAt("Concluido",i,2);
                 }
                 else{
-                    this.tbAlbum.setValueAt("Em andamento",i,2);
+                    this.tbSessoesMusico.setValueAt("Em andamento",i,2);
                 }
             }
         }
@@ -52,13 +57,12 @@ public class listaAlbuns extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbAlbum = new javax.swing.JTable();
+        tbSessoesMusico = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tbAlbum.setModel(new javax.swing.table.DefaultTableModel(
+        tbSessoesMusico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -82,7 +86,7 @@ public class listaAlbuns extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Titulo", "Tipo", "Estado"
+                "Album", "Data agendada", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -93,8 +97,9 @@ public class listaAlbuns extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbAlbum);
+        jScrollPane1.setViewportView(tbSessoesMusico);
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,37 +107,27 @@ public class listaAlbuns extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Lista de albuns");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         pack();
@@ -146,11 +141,11 @@ public class listaAlbuns extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbAlbum;
+    private javax.swing.JTable tbSessoesMusico;
     // End of variables declaration//GEN-END:variables
 }

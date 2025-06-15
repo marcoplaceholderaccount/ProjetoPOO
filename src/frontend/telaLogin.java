@@ -4,6 +4,7 @@
  */
 package frontend;
 
+import javax.swing.*;
 import projetofinal.GestaoSistema;
 import projetofinal.Utilizador;
 import projetofinal.Produtor;
@@ -23,6 +24,12 @@ public class telaLogin extends javax.swing.JFrame {
     GestaoSistema sistema;
 
     public telaLogin(GestaoSistema lista) {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         initComponents();
         this.sistema = lista;
     }
@@ -161,7 +168,7 @@ public class telaLogin extends javax.swing.JFrame {
                 if (u.getUserName().equals(user)){
                     if (u.getSenha().equals(pass)) {
                         if (u instanceof Produtor) {
-                            Produtor p = (Produtor) u;
+                            Produtor p = (Produtor) u; // Cast para Produtor
                             telaProdutor tp = new telaProdutor(sistema,p);
                             tp.setVisible(true);
                             this.setVisible(false);

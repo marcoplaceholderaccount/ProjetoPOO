@@ -41,6 +41,7 @@ public class registoAlbum extends javax.swing.JFrame {
         for (int i = 0; i < musicas.size(); i++) {
             if (musicas.get(i) != null) {
                 this.tbMusicas.setValueAt(musicas.get(i).getTitulo(), i, 0);
+                this.tbMusicas.setValueAt(musicas.get(i).getDuracao(), i, 1);
             }
         }
         //Preencher a tabela de produtores
@@ -348,7 +349,9 @@ public class registoAlbum extends javax.swing.JFrame {
             }
         }
         
+        //adicionar album no sistema e na lista do produtor
         sistema.adicionarAlbum(novoAlbum);
+        produtor.adicionarAlbum(novoAlbum);
 
         JOptionPane.showMessageDialog(this, "Album criado com sucesso!");
         this.dispose();

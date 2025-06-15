@@ -3,40 +3,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package frontend;
-
+import projetofinal.Musico;
 import projetofinal.GestaoSistema;
 import projetofinal.Album;
 import java.util.ArrayList;
-
 /**
  *
  * @author marco
  */
-public class listaAlbuns extends javax.swing.JFrame {
+public class albunsMusico extends javax.swing.JFrame {
 
     /**
-     * Creates new form listaAlbuns
+     * Creates new form albunsMusico
      */
-    
     GestaoSistema sistema;
+    Musico musico;
     
-    public listaAlbuns(GestaoSistema lista) {
-        initComponents();
+    public albunsMusico(GestaoSistema lista, Musico musico) {
         this.sistema = lista;
-        this.preencherTabela();
+        this.musico = musico;
+        initComponents();
+        preencherTabela();
     }
     
-    public void preencherTabela() {
-        ArrayList<Album> albuns = this.sistema.getAlbuns();
-        for(int i = 0; i < albuns.size(); i++) {
-            if(albuns.get(i) != null) {
-                this.tbAlbum.setValueAt(albuns.get(i).getTitulo(), i, 0);
-                this.tbAlbum.setValueAt(albuns.get(i).getTipo(), i, 1);
-                if(albuns.get(i).getEstado()){
-                    this.tbAlbum.setValueAt("Concluido",i,2);
+    public void preencherTabela(){
+        ArrayList<Album> albuns_musico = musico.getAlbunsAssociados(sistema.getAlbuns());
+        for(int i = 0; i < albuns_musico.size(); i++) {
+            if(albuns_musico.get(i) != null) {
+                this.tbAlbunsMusico.setValueAt(albuns_musico.get(i).getTitulo(), i, 0);
+                this.tbAlbunsMusico.setValueAt(albuns_musico.get(i).getTipo(), i, 1);
+                if(albuns_musico.get(i).getEstado()){
+                    this.tbAlbunsMusico.setValueAt("Concluido",i,2);
                 }
                 else{
-                    this.tbAlbum.setValueAt("Em andamento",i,2);
+                    this.tbAlbunsMusico.setValueAt("Em andamento",i,2);
                 }
             }
         }
@@ -52,13 +52,14 @@ public class listaAlbuns extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbAlbum = new javax.swing.JTable();
+        tbAlbunsMusico = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tbAlbum.setModel(new javax.swing.table.DefaultTableModel(
+        tbAlbunsMusico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -93,8 +94,9 @@ public class listaAlbuns extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tbAlbum);
+        jScrollPane1.setViewportView(tbAlbunsMusico);
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("Voltar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,41 +104,57 @@ public class listaAlbuns extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Lista de albuns");
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton2.setText("Ver Sessoes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Selecione um album (que nao foi concluido) da tabela para ver as sessoes agendadas");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(0, 77, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        albunsMusicoDialog amd = new albunsMusicoDialog(this,true,this.musico,sistema);
+        amd.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -146,11 +164,13 @@ public class listaAlbuns extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbAlbum;
+    private javax.swing.JTable tbAlbunsMusico;
     // End of variables declaration//GEN-END:variables
 }
