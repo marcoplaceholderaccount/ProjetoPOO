@@ -1,20 +1,23 @@
 package projetofinal;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Sessao {
         public Album album;
         public boolean conclusao;
-        public LocalDateTime dataf;
-        //public ArrayList<Requisicao> listareq = new ArrayList<Requisicao>();
+        public String dataI;
+        public String dataf;
+        public ArrayList<Requisicao> listareq;
       
         
-    public Sessao(Album album){
+    public Sessao(Album album,String dataI){
+        this.dataI = dataI;
         this.album = album;
         this.conclusao = false;
-        
+        this.listareq = new ArrayList<>();
     }
 
     public Sessao(){}
@@ -26,11 +29,18 @@ public class Sessao {
         return conclusao;
         
     }
+    
+    public Album getAlbum(){
+        return album;
+    }
 
-    public LocalDateTime getDataf() {
+    public String getDataf() {
         return dataf;
     }
     
+    public String getDataI(){
+        return dataI;
+    }
 
     //SETTERS
     /*VERIFICAR ESTA PARCELA DE CODIGO!
@@ -39,13 +49,12 @@ public class Sessao {
     }
     ---------------------------------------*/
 
-    public void setAlbum(Album album) {
-        this.album = album;
-    }
-
     public void Concluir() {
         this.conclusao = true;
-        this.dataf = LocalDateTime.now();
+        LocalDateTime data = LocalDateTime.now();
+        DateTimeFormatter dataformatada = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String datanova = data.format(dataformatada);
+        this.dataf = datanova;
     }
 
         

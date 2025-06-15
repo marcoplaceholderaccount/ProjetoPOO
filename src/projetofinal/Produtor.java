@@ -30,6 +30,10 @@ public class Produtor extends Utilizador {
     public ArrayList<Album> getAlbunsProduzidos(){
         return albunsProduzidos;
     }
+    
+    public void adicionarAlbum(Album album){
+        this.albunsProduzidos.add(album);
+    }
  
 /*
 public Album iniciarEdicaoAlbum(String titulo, String dataEdicao, String tipo) {

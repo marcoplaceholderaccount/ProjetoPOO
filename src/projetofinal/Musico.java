@@ -20,8 +20,8 @@ public Musico(String username,String senha,String nome, String morada, String da
     this.morada= morada;
     this.dataNascimento= dataNascimento;
     this.numeroidentificacao= numeroidentificacao;
-   this.instrumentos= new ArrayList<>();
-   this.requisicoes= new ArrayList<>();
+    this.instrumentos= new ArrayList<>();
+    this.requisicoes= new ArrayList<>();
     
 }
 
@@ -81,32 +81,15 @@ public Musico(){}
     setNumeroidentificacao(novoNumero);
  }
 
-
-//listar as requisicoes
-  public void listarRequisicoesPorEstado(String estado) {
-    boolean encontrou = false;
-    System.out.println("Requisições com estado: " + estado);
-
-    for (Requisicao r : requisicoes) {
-        if (r.getEstado().equals(estado)) {
-            System.out.println("- Data: " + r.getData() + ", Músico: "+ r.getMusico().getUserName());
-            encontrou = true;
-        }
-    }
-
-    if (!encontrou) {
-        System.out.println("Nenhuma requisição encontrada com o estado \"" + estado + "\".");
-    }
-}
-  // ver albuns associados
+ 
+ // ver albuns associados
 public ArrayList<Album> getAlbunsAssociados(ArrayList<Album> todosAlbuns) {
     ArrayList<Album> albuns = new ArrayList<>();
 
-    
     for (Album album : todosAlbuns) {
         for (Musica musica : album.getMusicas()) {
             if (musica.getMusicos().contains(this)) {
-               albuns.add(album);
+                albuns.add(album);
                 break;
             }
         }
@@ -115,25 +98,26 @@ public ArrayList<Album> getAlbunsAssociados(ArrayList<Album> todosAlbuns) {
     return albuns;
 }
 
-// ver sessoes agendadas
-public ArrayList<Sessao> getSessoesAgendadas() {
-    ArrayList<Sessao> sessoes = new ArrayList<>();
-
-    for (Requisicao r : requisicoes) {
-        Sessao sessao = r.getSessao();
-        if (!sessao.isConclusao() && !sessoes.contains(sessao)) {
-            sessoes.add(sessao);
+// ver sessoes agendadas nos albuns em que 
+public ArrayList<Sessao> getSessoesAgendadas(ArrayList<Album> todosAlbuns) {
+    ArrayList<Sessao> sessoesAgendadas = new ArrayList<>();
+    
+    for (Album album : todosAlbuns) {
+        if (!album.getEstado()) { // Se o álbum não está concluído
+            for (Sessao sessao : album.getSessoes()) {
+                if (!sessao.isConclusao() && !sessoesAgendadas.contains(sessao)) {
+                    sessoesAgendadas.add(sessao);
+                }
+            }
         }
+        else{
+            System.out.println("O album já foi concluido");
+        }
+        
     }
-    return sessoes;
+    
+    return sessoesAgendadas;
 }
-
-
-public void adicionarRequesicao(Requisicao requesicao){
-    requisicoes.add(requesicao);
-}
-
-
 
  
 }

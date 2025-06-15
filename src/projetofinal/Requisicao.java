@@ -8,13 +8,13 @@ public class Requisicao {
     public Musico musico;
     public LocalDateTime data;
     public String estado;
-    public ArrayList<Instrumento> instrumentos;
+    public ArrayList<Instrumento> instrumentos_req;
         
     public Requisicao(Sessao sessao, Musico musico){
         this.musico = musico;
         this.sessao = sessao;
         this.estado = "Pendente";
-        this.instrumentos = new ArrayList<>();
+        this.instrumentos_req = new ArrayList<>();
         this.data = LocalDateTime.now();
         
     }
@@ -49,14 +49,14 @@ public class Requisicao {
     }
 
     public ArrayList<Instrumento> getInstrumento() {
-        return instrumentos;
+        return instrumentos_req;
     }
 
 
     public void adicionarInstrumento(Instrumento instrumento) {
         if (instrumento.getEstado()){
             instrumento.setEstado(false);
-            instrumentos.add(instrumento);
+            instrumentos_req.add(instrumento);
             System.out.println("Instrumento requerido com sucesso: " + instrumento.getNome());
         } else {
             System.out.println("Instrumento ja foi requerido.");
@@ -64,10 +64,10 @@ public class Requisicao {
     }
      
     public void liberarInstrumentos(){
-        for (Instrumento i : instrumentos){
+        for (Instrumento i : instrumentos_req){
             i.setEstado(true);
         }
-        instrumentos.clear();
+        instrumentos_req.clear();
     }
     
     

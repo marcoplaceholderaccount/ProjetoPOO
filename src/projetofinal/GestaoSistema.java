@@ -12,6 +12,7 @@ public class GestaoSistema {
     public ArrayList<Utilizador> utilizadores;
     public ArrayList<Musica> musicas;
     public ArrayList<Album> albuns;
+    public ArrayList<Requisicao> requisicoes;
 
     //  Construtores
     public GestaoSistema() {
@@ -37,7 +38,15 @@ public class GestaoSistema {
     public ArrayList<Instrumento> getInstrumentos() {
         return instrumentos;
     }
+    
+    public ArrayList<Requisicao> getRequisicoes() {
+        return requisicoes;
+    }
 
+    public void adicionarRequisicao(Requisicao req){
+        requisicoes.add(req);
+    }
+    
     public void adicionarInstrumento(Instrumento instrumento) {
     if (instrumento != null) {
         instrumentos.add(instrumento);
