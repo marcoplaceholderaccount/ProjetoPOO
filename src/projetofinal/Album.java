@@ -8,15 +8,19 @@ public class Album {
     private String dataEdicao;
     private String dataFinal;
     private String tipo;
+    private double progresso;
     private Produtor produtor;
     public ArrayList<Musica> musicas;
     public ArrayList<Sessao> sessoes;
     public boolean estado;
     
     
+    
     public Album(String titulo, String tipo, Produtor produtor){
         this.titulo= titulo;
         this.tipo= tipo;
+        //this.progresso = 0;
+        this.estado = false;
         this.musicas= new ArrayList<>();
         this.sessoes= new ArrayList<>();
       
@@ -42,9 +46,16 @@ public class Album {
     
     public String getTipo() {
         return tipo;
-        
     }
 
+    public double getProgresso(){
+        return progresso;
+    }
+    
+    public void setProgresso(double percent){
+        this.progresso = percent;
+    }
+    
     public Produtor getProdutor() {
         return produtor;
     }
@@ -74,6 +85,7 @@ public class Album {
         DateTimeFormatter dataformatada = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String datanova = data.format(dataformatada);
         this.dataEdicao = datanova;
+        
     }
     
     public void setDataFinal(){
@@ -103,6 +115,26 @@ public class Album {
     // adicionar sessoes
     public void adicionarSessoes(Sessao sessao){
         this.sessoes.add(sessao);
+    }
+    
+    //calcular percentagem de sessoes concluidas do album
+    public String calcularProgresso(){
+        double percentagem;
+        int numsessoes = this.sessoes.size();
+        int sessoes_concluidas = 0;
+
+        for(Sessao sessao : this.sessoes){
+            if(sessao.isConclusao()){
+                sessoes_concluidas++;
+            }
+        }
+        
+        if(numsessoes>0){
+            percentagem = (sessoes_concluidas*100)/numsessoes;
+            String numeroformatado = String.format("%.1f", percentagem);
+            return numeroformatado;
+        }
+        return "";
     }
     
     @Override

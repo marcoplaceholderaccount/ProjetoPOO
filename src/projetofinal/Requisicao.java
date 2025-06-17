@@ -1,12 +1,13 @@
 package projetofinal;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Requisicao {
     public Sessao sessao;
     public Musico musico;
-    public LocalDateTime data;
+    public String data;
     public String estado;
     public ArrayList<Instrumento> instrumentos_req;
         
@@ -15,7 +16,10 @@ public class Requisicao {
         this.sessao = sessao;
         this.estado = "Pendente";
         this.instrumentos_req = new ArrayList<>();
-        this.data = LocalDateTime.now();
+        LocalDateTime dataN = LocalDateTime.now();
+        DateTimeFormatter dataformatada = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String datanova = dataN.format(dataformatada);
+        this.data = datanova;
         
     }
     
@@ -27,9 +31,16 @@ public class Requisicao {
     public Musico getMusico() {
         return musico;
     }
+    
+    public void aceitarReq(){
+        this.estado = "Atribuido";
+    }
+    public void recusarReq(){
+        this.estado = "Recusado";
+    }
 
     
-    public LocalDateTime getData() {
+    public String getData() {
         return data;
     }
     

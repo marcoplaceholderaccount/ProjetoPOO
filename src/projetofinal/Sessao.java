@@ -43,11 +43,11 @@ public class Sessao {
     }
 
     //SETTERS
-    /*VERIFICAR ESTA PARCELA DE CODIGO!
+   
     public void adicionarRequisicao(Requisicao requisicao) {
         listareq.add(requisicao);
     }
-    ---------------------------------------*/
+   
 
     public void Concluir() {
         this.conclusao = true;

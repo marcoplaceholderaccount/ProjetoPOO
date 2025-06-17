@@ -23,6 +23,7 @@ public class GestaoSistema {
     this.utilizadores = new ArrayList<>();
     this.musicas = new ArrayList<>();
     this.albuns = new ArrayList<>();
+    this.requisicoes = new ArrayList<>();
 }
     //Metodos
     
@@ -65,6 +66,7 @@ public class GestaoSistema {
             System.out.println("Nao existe um instrumento na posicao selecionada");
         }
     }
+    
     
     
     //Adicionar utilizador
