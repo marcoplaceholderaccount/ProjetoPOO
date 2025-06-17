@@ -278,20 +278,32 @@ public class fazerRequisicao extends javax.swing.JFrame {
         
         int selecao = tbSessoesMusico.getSelectedRow();
         
-        Requisicao novaReq = new Requisicao(sessoes_musico.get(selecao),musico);
-        
-        ArrayList<Instrumento> instrumentos = sistema.getInstrumentos();
+        if(sessoes_musico.get(selecao)!=null || musico != null){
+            Requisicao novaReq = new Requisicao(sessoes_musico.get(selecao),musico);
+            System.out.println("Nova requisicao criada");
+            
+            ArrayList<Instrumento> instrumentos = sistema.getInstrumentos();
             for (int i = 0; i < model.size(); i++) {
                 String nomeInstrumento = model.getElementAt(i);
                 for (Instrumento ins : instrumentos) {
                     if (ins.getNome().equals(nomeInstrumento)) {
-                        novaReq.instrumentos_req.add(ins);
+                        novaReq.adicionarInstrumento(ins);
                         break;
                     }
                 }
             }
-            
-        sistema.adicionarRequisicao(novaReq);
+            if(novaReq.getInstrumento().isEmpty()){
+                System.out.println("A requesicao nao tem instrumentos validos");
+            } else{
+                sistema.adicionarRequisicao(novaReq);
+                System.out.println("A requisicao foi adicionada no sistema");
+            }
+        } else{
+            System.out.println("Null");
+        }
+        
+        
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

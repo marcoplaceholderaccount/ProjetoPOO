@@ -183,6 +183,7 @@ public class verSessoesDialog extends javax.swing.JDialog {
         ArrayList<Sessao> sessoes = this.album.getSessoes();
         if(selecao != -1){
             sessoes.get(selecao).Concluir();
+            System.out.println("A sessao foi concluida");
         }
         else{
             System.out.println("Selecione uma sessao na tabela primeiro!");
@@ -205,6 +206,7 @@ public class verSessoesDialog extends javax.swing.JDialog {
             if(todasConcluidas){
                 System.out.println("Todas as sessoes foram concluidas");
                 this.album.setDataFinal();
+                this.album.setEstado(true);
             }else{ 
                 System.out.println("Ainda ha sessoes em andamento"); 
             }
