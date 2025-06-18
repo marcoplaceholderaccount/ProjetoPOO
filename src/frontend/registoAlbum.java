@@ -40,8 +40,10 @@ public class registoAlbum extends javax.swing.JFrame {
         ArrayList<Musica> musicas = this.sistema.getMusicas();
         for (int i = 0; i < musicas.size(); i++) {
             if (musicas.get(i) != null) {
+                int minuto = (musicas.get(i).getDuracao())/60;
+                int segundos = (musicas.get(i).getDuracao()%60);
                 this.tbMusicas.setValueAt(musicas.get(i).getTitulo(), i, 0);
-                this.tbMusicas.setValueAt(musicas.get(i).getDuracao(), i, 1);
+                this.tbMusicas.setValueAt(""+minuto+":"+""+segundos, i, 1);
             }
         }
         //Preencher a tabela de produtores

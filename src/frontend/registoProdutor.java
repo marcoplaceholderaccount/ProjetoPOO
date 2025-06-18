@@ -132,6 +132,7 @@ public class registoProdutor extends javax.swing.JFrame {
         String nomeprod = nome_produtor.getText();
         Produtor p = new Produtor(user,pass,nomeprod);
         sistema.adicionarUtilizador(p);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

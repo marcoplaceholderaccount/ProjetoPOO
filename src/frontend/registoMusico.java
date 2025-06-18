@@ -197,6 +197,7 @@ public class registoMusico extends javax.swing.JFrame {
         
         Musico m = new Musico(user,pass,nomemusic,dataNa,morada,cni);
         sistema.adicionarUtilizador(m);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

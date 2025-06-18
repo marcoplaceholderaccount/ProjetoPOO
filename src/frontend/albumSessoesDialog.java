@@ -111,7 +111,6 @@ public class albumSessoesDialog extends javax.swing.JDialog {
         Sessao novasessao = new Sessao(album,data_inicio.getText());
         album.adicionarSessoes(novasessao);
         System.out.println("A sessao foi agendada com sucesso");
-        
     }//GEN-LAST:event_AtribuirActionPerformed
 
     /**

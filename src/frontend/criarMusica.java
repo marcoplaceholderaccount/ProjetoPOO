@@ -242,7 +242,7 @@ public class criarMusica extends javax.swing.JFrame {
         }
 
         try {
-            double duracao = Double.parseDouble(duracaoStr);
+            int duracao = Integer.parseInt(duracaoStr);
             if (duracao <= 0) {
                 JOptionPane.showMessageDialog(this, "A duração deve ser maior que zero.");
                 return;
