@@ -117,7 +117,7 @@ public class Album {
         this.sessoes.add(sessao);
     }
     
-    //calcular percentagem de sessoes concluidas do album
+    //calcular percentagem de sessoes (em string) concluidas do album
     public String calcularProgresso(){
         double percentagem;
         int numsessoes = this.sessoes.size();
@@ -136,6 +136,25 @@ public class Album {
         }
         return "";
     }
+    public double calcularProgressoTotal(){
+        double percentagem = 0;
+        int numsessoes = this.sessoes.size();
+        int sessoes_concluidas = 0;
+        //calcular as sessoes concluidas
+        for(Sessao sessao : this.sessoes){
+            if(sessao.isConclusao()){
+                sessoes_concluidas++;
+            }
+        }
+        //verificar se a divisao e por zero
+        if(numsessoes>0){
+            percentagem = (sessoes_concluidas*100)/numsessoes;
+            return percentagem;
+        }
+        return percentagem;
+    }
+    
+    
     
     @Override
     public String toString() {

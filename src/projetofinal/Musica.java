@@ -5,12 +5,12 @@ import java.util.ArrayList;
 
 public class Musica {
  public String titulo;
- public double duracao;
+ public int duracao;
  public ArrayList<Musico> musicos;
  
  
 
-public Musica(String titulo, double duracao){
+public Musica(String titulo, int duracao){
     this.titulo = titulo;
     this.duracao = duracao;
     this.musicos = new ArrayList<>();
@@ -21,7 +21,7 @@ public Musica(String titulo, double duracao){
     public String getTitulo() {
         return titulo;
     }
-    public double getDuracao() {
+    public int getDuracao() {
         return duracao;
     }
 
@@ -31,7 +31,7 @@ public Musica(String titulo, double duracao){
     
     
     //SETTERS
-    public void setDuracao(double duracao) {
+    public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
     public void setTitulo(String titulo) {

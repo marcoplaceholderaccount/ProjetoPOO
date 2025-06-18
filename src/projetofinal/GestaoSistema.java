@@ -67,38 +67,39 @@ public class GestaoSistema {
         }
     }
     
-    
-    
     //Adicionar utilizador
     public void adicionarUtilizador(Utilizador utilizador) {
-    if (utilizador == null) {
-        System.out.println("Utilizador inválido.");
-        return;
-    }
-
-    // Verificar se já existe
-    for (Utilizador u : utilizadores) {
-        if (u.getUserName().equalsIgnoreCase(utilizador.getUserName())) {
-            System.out.println("O username já existe: " + utilizador.getUserName());
-            return; // NÃO ADICIONA
+        if (utilizador == null) {
+            System.out.println("Utilizador inválido.");
+            return;
         }
-    }
-
-    // Adicionar à lista geral
-    utilizadores.add(utilizador);
-
-    // Adicionar à lista específica
-    if (utilizador instanceof Musico) {
-        musicos.add((Musico) utilizador);
-    } else if (utilizador instanceof Produtor) {
-        produtor.add((Produtor) utilizador);
-    }
-
-    System.out.println("Utilizador adicionado: " + utilizador.getUserName());
+        // Verificar se já existe
+        for (Utilizador u : utilizadores) {
+            if (u.getUserName().equalsIgnoreCase(utilizador.getUserName())) {
+                System.out.println("O username já existe: " + utilizador.getUserName());
+                return; // NÃO ADICIONA
+            }
+        }
+        // Adicionar à lista geral
+        utilizadores.add(utilizador);
+        // Adicionar à lista específica
+        if (utilizador instanceof Musico) {
+            musicos.add((Musico) utilizador);
+        } else if (utilizador instanceof Produtor) {
+            produtor.add((Produtor) utilizador);
+        }
+        System.out.println("Utilizador adicionado: " + utilizador.getUserName());
     }
     
     public void removerUtilizador(int posicao){
-        utilizadores.remove(posicao);
+        if(posicao < utilizadores.size()){
+            System.out.println("Utilizador removido: " + utilizadores.get(posicao).getUserName());
+            utilizadores.remove(posicao);
+        }
+        else{
+            System.out.println("Nao existe um utilizador na posicao selecionada");
+        }
+        
     }
     
     public ArrayList<Utilizador> getUtilizadores() {
@@ -123,9 +124,3 @@ public class GestaoSistema {
     }
     
 }
-
-    
-    
-    
-    
-
