@@ -6,11 +6,11 @@ package frontend;
 
 import javax.swing.*;
 
-import projetofinal.GestaoSistema;
-import projetofinal.Musica;
-import projetofinal.Album;
-import projetofinal.Utilizador;
-import projetofinal.Produtor;
+import backend.GestaoSistema;
+import backend.Musica;
+import backend.Album;
+import backend.Utilizador;
+import backend.Produtor;
 import java.util.ArrayList;
 
 /**

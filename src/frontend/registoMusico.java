@@ -5,8 +5,8 @@
 package frontend;
 
 import java.util.ArrayList;
-import projetofinal.GestaoSistema;
-import projetofinal.Musico;
+import backend.GestaoSistema;
+import backend.Musico;
 
 /**
  *

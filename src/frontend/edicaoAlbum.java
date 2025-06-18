@@ -4,8 +4,8 @@
  */
 package frontend;
 import java.util.ArrayList;
-import projetofinal.Produtor;
-import projetofinal.Album;
+import backend.Produtor;
+import backend.Album;
 
 
 /**

@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package frontend;
-import projetofinal.GestaoSistema;
-import projetofinal.Musico;
+import backend.GestaoSistema;
+import backend.Musico;
         
 /**
  *

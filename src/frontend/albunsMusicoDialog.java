@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package frontend;
-import projetofinal.Musico;
-import projetofinal.GestaoSistema;
-import projetofinal.Album;
-import projetofinal.Sessao;
+import backend.Musico;
+import backend.GestaoSistema;
+import backend.Album;
+import backend.Sessao;
 import java.util.ArrayList;
 
 /**

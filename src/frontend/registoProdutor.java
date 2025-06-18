@@ -5,9 +5,9 @@
 package frontend;
 
 import java.util.ArrayList;
-import projetofinal.GestaoSistema;
-import projetofinal.Produtor;
-import projetofinal.Utilizador;
+import backend.GestaoSistema;
+import backend.Produtor;
+import backend.Utilizador;
 
 /**
  *

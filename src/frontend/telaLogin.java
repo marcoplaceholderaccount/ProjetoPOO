@@ -5,10 +5,10 @@
 package frontend;
 
 import javax.swing.*;
-import projetofinal.GestaoSistema;
-import projetofinal.Utilizador;
-import projetofinal.Produtor;
-import projetofinal.Musico;
+import backend.GestaoSistema;
+import backend.Utilizador;
+import backend.Produtor;
+import backend.Musico;
 import java.util.ArrayList;
 
 /**

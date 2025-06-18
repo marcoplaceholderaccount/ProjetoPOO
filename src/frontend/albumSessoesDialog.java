@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package frontend;
-import projetofinal.Album;
-import projetofinal.Sessao;
+import backend.Album;
+import backend.Sessao;
 
 /**
  *

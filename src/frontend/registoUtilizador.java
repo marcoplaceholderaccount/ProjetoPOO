@@ -4,7 +4,7 @@
  */
 package frontend;
 
-import projetofinal.GestaoSistema;
+import backend.GestaoSistema;
 
 /**
  *

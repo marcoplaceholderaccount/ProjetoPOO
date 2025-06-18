@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package frontend;
-import projetofinal.Musico;
-import projetofinal.GestaoSistema;
-import projetofinal.Album;
+import backend.Musico;
+import backend.GestaoSistema;
+import backend.Album;
 import java.util.ArrayList;
 /**
  *

@@ -4,8 +4,8 @@
  */
 package frontend;
 
-import projetofinal.Instrumento;
-import projetofinal.GestaoSistema;
+import backend.Instrumento;
+import backend.GestaoSistema;
 import java.util.ArrayList;
 
 /**
