@@ -5,7 +5,10 @@
 package frontend;
 import backend.Sessao;
 import backend.Album;
+import backend.GestaoSistema;
+import backend.Requisicao;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,13 +17,14 @@ import java.util.ArrayList;
 public class verSessoesDialog extends javax.swing.JDialog {
 
     public Album album;
-    
+    GestaoSistema sistema;
     /**
      * Creates new form verSessoesDialog
      */
-    public verSessoesDialog(java.awt.Frame parent, boolean modal, Album album) {
+    public verSessoesDialog(java.awt.Frame parent, boolean modal, Album album, GestaoSistema lista) {
         super(parent, modal);
         this.album = album;
+        this.sistema = lista;
         initComponents();
         this.preencherTabela();
         
@@ -140,7 +144,13 @@ public class verSessoesDialog extends javax.swing.JDialog {
         ArrayList<Sessao> sessoes = this.album.getSessoes();
         if(selecao != -1){
             sessoes.get(selecao).Concluir();
-            System.out.println("A sessao foi concluida");
+            for(Requisicao r : sistema.getRequisicoes()){
+                if(r.getSessao().getAlbum() == sessoes.get(selecao).getAlbum()){
+                    r.liberarInstrumentos();
+                    System.out.println("Instrumentos liberados");
+                } 
+            }
+            JOptionPane.showMessageDialog(this, "A sessao foi concluida!");
         }
         else{
             System.out.println("Selecione uma sessao na tabela primeiro!");

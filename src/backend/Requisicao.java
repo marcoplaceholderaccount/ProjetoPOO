@@ -1,10 +1,11 @@
 package backend;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Requisicao {
+public class Requisicao implements Serializable{
     public Sessao sessao;
     public Musico musico;
     public String data;

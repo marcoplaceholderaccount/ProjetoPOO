@@ -130,13 +130,14 @@ public class telaLogin extends javax.swing.JFrame {
                             Produtor p = (Produtor) u; // Cast para Produtor
                             telaProdutor tp = new telaProdutor(sistema,p);
                             tp.setVisible(true);
-                            this.setVisible(false);
+                            this.dispose();
                             return;                            
-                        } else if (u instanceof Musico) {
-                            Musico m = (Musico) u; // Cast para Musico
-                            telaMusico tm = new telaMusico(sistema,m);
+                        }
+                        else if(u instanceof Musico) {
+                            Musico m = (Musico) u;
+                            telaMusico tm= new telaMusico(sistema,m);
                             tm.setVisible(true);
-                            this.setVisible(false);
+                            this.dispose();
                             return;
                         }
                     }

@@ -7,6 +7,7 @@ package frontend;
 import java.util.ArrayList;
 import backend.GestaoSistema;
 import backend.Musico;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -153,8 +154,9 @@ public class registoMusico extends javax.swing.JFrame {
         String morada = morada_musico.getText();
         String cni = cni_musico.getText();
         
-        Musico m = new Musico(user,pass,nomemusic,dataNa,morada,cni);
+        Musico m = new Musico(user,pass,nomemusic,morada,dataNa,cni);
         sistema.adicionarUtilizador(m);
+        JOptionPane.showMessageDialog(this, "Musico criado com sucesso!");
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

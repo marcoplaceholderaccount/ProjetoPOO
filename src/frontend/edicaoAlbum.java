@@ -6,7 +6,7 @@ package frontend;
 import java.util.ArrayList;
 import backend.Produtor;
 import backend.Album;
-
+import backend.GestaoSistema;
 
 /**
  *
@@ -18,10 +18,12 @@ public class edicaoAlbum extends javax.swing.JFrame {
      * Creates new form edicaoAlbum
      */
     public Produtor produtor;
+    GestaoSistema sistema;
     
-    public edicaoAlbum(Produtor produtor) {
+    public edicaoAlbum(Produtor produtor, GestaoSistema lista) {
         initComponents();
         this.produtor = produtor;
+        this.sistema = lista;
         this.preencherTabela();
         
     }
@@ -49,7 +51,6 @@ public class edicaoAlbum extends javax.swing.JFrame {
             }
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,7 +157,7 @@ public class edicaoAlbum extends javax.swing.JFrame {
             albuns.get(selecao).setDataEdicao();
         }
         //abrir o dialog para criar sessoes do album
-        albumSessoesDialog asd = new albumSessoesDialog(this,true,albuns.get(selecao));
+        albumSessoesDialog asd = new albumSessoesDialog(this,true,albuns.get(selecao),sistema);
         asd.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -171,7 +172,7 @@ public class edicaoAlbum extends javax.swing.JFrame {
         //selecao do album
         ArrayList<Album> albuns = this.produtor.getAlbunsProduzidos();
         //abrir dialog para ver as sessoes e conclui-las
-        verSessoesDialog vsd = new verSessoesDialog(this,true,albuns.get(selecao));
+        verSessoesDialog vsd = new verSessoesDialog(this,true,albuns.get(selecao), sistema);
         vsd.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -1,9 +1,10 @@
 package backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Musica {
+public class Musica implements Serializable {
  public String titulo;
  public int duracao;
  public ArrayList<Musico> musicos;
@@ -37,8 +38,11 @@ public Musica(String titulo, int duracao){
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-       
-   
+
+    public void setMusicos(ArrayList<Musico> musicos) {
+        this.musicos = musicos;
+    }
+    
     public void adicionarMusico(Musico musico){
         this.musicos.add(musico);
     }

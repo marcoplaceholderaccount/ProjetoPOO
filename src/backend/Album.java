@@ -1,9 +1,10 @@
 package backend;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Album {
+public class Album implements Serializable {
     private String titulo;
     private String dataEdicao;
     private String dataFinal;
@@ -153,8 +154,6 @@ public class Album {
         }
         return percentagem;
     }
-    
-    
     
     @Override
     public String toString() {

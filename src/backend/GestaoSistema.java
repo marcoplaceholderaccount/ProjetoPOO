@@ -7,7 +7,7 @@ public class GestaoSistema {
     
     public ArrayList<Instrumento> instrumentos;
     public ArrayList<Musico> musicos;
-    public ArrayList<Sessao> sessao;
+    public ArrayList<Sessao> sessoes;
     public ArrayList<Produtor> produtor;
     public ArrayList<Utilizador> utilizadores;
     public ArrayList<Musica> musicas;
@@ -18,7 +18,7 @@ public class GestaoSistema {
     public GestaoSistema() {
     this.instrumentos = new ArrayList<>();
     this.musicos = new ArrayList<>();
-    this.sessao = new ArrayList<>();
+    this.sessoes = new ArrayList<>();
     this.produtor = new ArrayList<>();
     this.utilizadores = new ArrayList<>();
     this.musicas = new ArrayList<>();
@@ -27,13 +27,9 @@ public class GestaoSistema {
 }
     //Metodos
     
+    //GETTERS
     public ArrayList<Album> getAlbuns() {
         return albuns;
-    }
-    
-    public void adicionarAlbum(Album album){
-        albuns.add(album);
-        System.out.println("Album adicionado com sucesso: " + album.getTitulo());
     }
     
     public ArrayList<Instrumento> getInstrumentos() {
@@ -43,7 +39,64 @@ public class GestaoSistema {
     public ArrayList<Requisicao> getRequisicoes() {
         return requisicoes;
     }
+    
+    public ArrayList<Utilizador> getUtilizadores() {
+        return utilizadores;
+    }
 
+    public ArrayList<Musica> getMusicas() {
+        return musicas;
+    }
+
+    public ArrayList<Musico> getMusicos() {
+        return musicos;
+    }
+    
+    public ArrayList<Sessao> getSessoes(){
+        return sessoes;
+    }   
+    
+    public void setUtilizadores(ArrayList<Utilizador> utilizadores) {
+        this.utilizadores = utilizadores;
+    }
+
+    public void setInstrumentos(ArrayList<Instrumento> instrumentos) {
+        this.instrumentos = instrumentos;
+    }
+
+    
+    public void setMusicos(ArrayList<Musico> musicos) {
+        this.musicos = musicos;
+    }
+    
+    
+    public void setSessoes(ArrayList<Sessao> sessoes) {
+        this.sessoes = sessoes;
+    }
+
+    public void setProdutor(ArrayList<Produtor> produtor) {
+        this.produtor = produtor;
+    }
+
+    public void setMusicas(ArrayList<Musica> musicas) {
+        this.musicas = musicas;
+    }
+
+    public void setAlbuns(ArrayList<Album> albuns) {
+        this.albuns = albuns;
+    }
+
+    public void setRequisicoes(ArrayList<Requisicao> requisicoes) {
+        this.requisicoes = requisicoes;
+    }
+    
+    //ADICIONAR E REMOVER DA LISTA
+    
+    public void adicionarAlbum(Album album){
+        albuns.add(album);
+        System.out.println("Album adicionado com sucesso: " + album.getTitulo());
+    }
+    
     public void adicionarRequisicao(Requisicao req){
         requisicoes.add(req);
     }
@@ -67,7 +120,6 @@ public class GestaoSistema {
         }
     }
     
-    //Adicionar utilizador
     public void adicionarUtilizador(Utilizador utilizador) {
         if (utilizador == null) {
             System.out.println("Utilizador inválido.");
@@ -80,14 +132,9 @@ public class GestaoSistema {
                 return; // NÃO ADICIONA
             }
         }
-        // Adicionar à lista geral
+        
         utilizadores.add(utilizador);
-        // Adicionar à lista específica
-        if (utilizador instanceof Musico) {
-            musicos.add((Musico) utilizador);
-        } else if (utilizador instanceof Produtor) {
-            produtor.add((Produtor) utilizador);
-        }
+
         System.out.println("Utilizador adicionado: " + utilizador.getUserName());
     }
     
@@ -102,25 +149,13 @@ public class GestaoSistema {
         
     }
     
-    public ArrayList<Utilizador> getUtilizadores() {
-        return utilizadores;
-    } 
-    
-    public Utilizador procurarUtilizador(String username) {
-        for (Utilizador u : utilizadores) {
-            if (u.getUserName().equals(username)) {
-                return u;
-            }
-        }
-        return null;
-    }
-    
     public void adicionarMusica(Musica musica) {
         this.musicas.add(musica);
     }
     
-    public ArrayList<Musica> getMusicas() {
-        return musicas;
+    public void adicionarSessao(Sessao sessao) {
+        this.sessoes.add(sessao);
     }
+    
     
 }

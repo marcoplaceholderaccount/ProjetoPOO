@@ -1,11 +1,12 @@
 package backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class Sessao {
+public class Sessao implements Serializable {
         public Album album;
         public boolean conclusao;
         public String dataI;

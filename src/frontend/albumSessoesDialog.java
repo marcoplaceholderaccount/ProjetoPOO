@@ -5,6 +5,8 @@
 package frontend;
 import backend.Album;
 import backend.Sessao;
+import backend.GestaoSistema;
+import javax.swing.*;
 
 /**
  *
@@ -16,10 +18,12 @@ public class albumSessoesDialog extends javax.swing.JDialog {
      * Creates new form albumSessoesDialog
      */
     public Album album;
+    GestaoSistema sistema;
     
-    public albumSessoesDialog(java.awt.Frame parent, boolean modal, Album album) {
+    public albumSessoesDialog(java.awt.Frame parent, boolean modal, Album album, GestaoSistema lista) {
         super(parent, modal);
         this.album = album;
+        this.sistema= lista;
         initComponents();
         receberDados();
     }
@@ -80,8 +84,10 @@ public class albumSessoesDialog extends javax.swing.JDialog {
     private void AtribuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtribuirActionPerformed
         // TODO add your handling code here:
         Sessao novasessao = new Sessao(album,data_inicio.getText());
+        sistema.adicionarSessao(novasessao);
         album.adicionarSessoes(novasessao);
-        System.out.println("A sessao foi agendada com sucesso");
+        JOptionPane.showMessageDialog(this, "A sessao foi agendada com sucesso!");
+        this.dispose();
     }//GEN-LAST:event_AtribuirActionPerformed
 
     /**

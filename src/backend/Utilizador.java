@@ -1,7 +1,7 @@
 package backend;
+import java.io.*;
 
-
-public abstract class Utilizador {
+public abstract class Utilizador implements Serializable{
     private String username;
     private String senha;
     

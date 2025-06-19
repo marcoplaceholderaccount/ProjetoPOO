@@ -40,9 +40,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="instrumento_tipo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="                       "/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="152" y="93" width="101" height="-1"/>
@@ -60,9 +57,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="instrumento_nome">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="                        "/>
-          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="15" y="93" width="103" height="-1"/>

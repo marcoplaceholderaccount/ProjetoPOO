@@ -68,11 +68,12 @@ public Musico(){}
         this.nome = nome;
     }
 
+    /*
     @Override
     public String toString() {
         return "Musico{" + "nome=" + nome + ", dataNascimento=" + dataNascimento + ", morada=" + morada + ", numeroidentificacao=" + numeroidentificacao + ", instrumentos=" + instrumentos + ", requisicoes=" + requisicoes + '}';
     }
-    
+    */
     
  public void editarDados(String novoNome, String novaMorada, String novaData, String novoNumero ) {
     setNome(novoNome);
@@ -85,16 +86,18 @@ public Musico(){}
  // ver albuns associados
 public ArrayList<Album> getAlbunsAssociados(ArrayList<Album> todosAlbuns) {
     ArrayList<Album> albuns = new ArrayList<>();
-
+    
     for (Album album : todosAlbuns) {
         for (Musica musica : album.getMusicas()) {
-            if (musica.getMusicos().contains(this)) {
-                albuns.add(album);
-                break;
+            // Verifica se o músico atual está na lista de músicos da música
+            for (Musico musicoDaMusica : musica.getMusicos()) {
+                if (musicoDaMusica.getNome().equals(this.getNome())) {       
+                    albuns.add(album);
+                    break;  // Sai do loop interno se encontrou
+                }
             }
         }
     }
-
     return albuns;
 }
 
@@ -111,7 +114,7 @@ public ArrayList<Sessao> getSessoesAgendadas(ArrayList<Album> todosAlbuns) {
             }
         }
         else{
-            System.out.println("O album já foi concluido");
+            System.out.println("O album "+ album.getTitulo() + " já foi concluido");
         }
         
     }

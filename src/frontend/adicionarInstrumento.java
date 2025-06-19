@@ -6,6 +6,7 @@ package frontend;
 
 import backend.Instrumento;
 import backend.GestaoSistema;
+import javax.swing.*;
 
 /**
  *
@@ -46,14 +47,10 @@ public class adicionarInstrumento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        instrumento_tipo.setText("                       ");
         jPanel1.add(instrumento_tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 93, 101, -1));
 
         jLabel1.setText(" Nome");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 71, -1, -1));
-
-        instrumento_nome.setText("                        ");
         jPanel1.add(instrumento_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 93, 103, -1));
 
         jLabel2.setText("Tipo");
@@ -102,6 +99,9 @@ public class adicionarInstrumento extends javax.swing.JFrame {
         String tipo = instrumento_tipo.getText();
         Instrumento p = new Instrumento(nome, tipo);
         sistema.adicionarInstrumento(p);
+        JOptionPane.showMessageDialog(this, "Instrumento criado com sucesso!");
+        instrumento_nome.setText("");
+        instrumento_tipo.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

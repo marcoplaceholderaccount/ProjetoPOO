@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import backend.GestaoSistema;
 import backend.Produtor;
 import backend.Utilizador;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -102,6 +103,7 @@ public class registoProdutor extends javax.swing.JFrame {
         String nomeprod = nome_produtor.getText();
         Produtor p = new Produtor(user,pass,nomeprod);
         sistema.adicionarUtilizador(p);
+        JOptionPane.showMessageDialog(this, "Produtor criado com sucesso!");
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

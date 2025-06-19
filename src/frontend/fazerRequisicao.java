@@ -28,9 +28,9 @@ public class fazerRequisicao extends javax.swing.JFrame {
     private DefaultListModel<String> modelInstrumentosSelecionados;
     
     public fazerRequisicao(GestaoSistema lista, Musico musico) {
+        initComponents();
         this.sistema = lista;
         this.musico = musico;
-        initComponents();
         this.preencherTabela();
         modelInstrumentosSelecionados = new DefaultListModel<>();
         lstInstrumentosSelecionados.setModel(modelInstrumentosSelecionados);
@@ -38,7 +38,7 @@ public class fazerRequisicao extends javax.swing.JFrame {
     
     public void preencherTabela() {
         //preencher tabela de instrumentos
-        ArrayList<Instrumento> instrumentos = this.sistema.getInstrumentos();
+        ArrayList<Instrumento> instrumentos = sistema.getInstrumentos();
         for(int i = 0; i < instrumentos.size(); i++) {
             if(instrumentos.get(i) != null) {
                 this.tbInstrumento.setValueAt(instrumentos.get(i).getNome(), i, 0);
@@ -237,8 +237,7 @@ public class fazerRequisicao extends javax.swing.JFrame {
         
         if(sessoes_musico.get(selecao)!=null || musico != null){
             Requisicao novaReq = new Requisicao(sessoes_musico.get(selecao),musico);
-            System.out.println("Nova requisicao criada");
-            
+   
             ArrayList<Instrumento> instrumentos = sistema.getInstrumentos();
             for (int i = 0; i < model.size(); i++) {
                 String nomeInstrumento = model.getElementAt(i);
@@ -250,13 +249,13 @@ public class fazerRequisicao extends javax.swing.JFrame {
                 }
             }
             if(novaReq.getInstrumento().isEmpty()){
-                System.out.println("A requesicao nao tem instrumentos validos");
+                JOptionPane.showMessageDialog(this, "A requesicao nao tem instrumentos validos");
             } else{
                 sistema.adicionarRequisicao(novaReq);
-                System.out.println("A requisicao foi adicionada no sistema");
+                JOptionPane.showMessageDialog(this, "A requisicao foi adicionada no sistema");
             }
         } else{
-            System.out.println("Null");
+            JOptionPane.showMessageDialog(this, "A sessao ou o musico sao invalidos");
         }
         
         

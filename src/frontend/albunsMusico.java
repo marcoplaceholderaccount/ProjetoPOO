@@ -6,6 +6,7 @@ package frontend;
 import backend.Musico;
 import backend.GestaoSistema;
 import backend.Album;
+import backend.Musica;
 import java.util.ArrayList;
 /**
  *
@@ -16,18 +17,19 @@ public class albunsMusico extends javax.swing.JFrame {
     /**
      * Creates new form albunsMusico
      */
+    public Musico musico;
     GestaoSistema sistema;
-    Musico musico;
+    
     
     public albunsMusico(GestaoSistema lista, Musico musico) {
-        this.sistema = lista;
-        this.musico = musico;
         initComponents();
+        this.musico = musico;
+        this.sistema = lista;
         preencherTabela();
     }
     
     public void preencherTabela(){
-        ArrayList<Album> albuns_musico = musico.getAlbunsAssociados(sistema.getAlbuns());
+        ArrayList<Album> albuns_musico = this.musico.getAlbunsAssociados(this.sistema.getAlbuns());
         for(int i = 0; i < albuns_musico.size(); i++) {
             if(albuns_musico.get(i) != null) {
                 this.tbAlbunsMusico.setValueAt(albuns_musico.get(i).getTitulo(), i, 0);
@@ -41,6 +43,7 @@ public class albunsMusico extends javax.swing.JFrame {
             }
         }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
