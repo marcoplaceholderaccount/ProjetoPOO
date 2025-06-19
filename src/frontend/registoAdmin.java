@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package frontend;
+import java.io.*;
+import java.util.ArrayList;
+import backend.*;
 
-import projetofinal.*;
-
-//import projetofinal.GestaoSistema;
 
 /**
  *
@@ -24,6 +24,89 @@ public class registoAdmin extends javax.swing.JFrame {
         initComponents();
         this.sistema = lista;
     }
+    
+    public void gravar2() throws IOException
+    {
+        ObjectOutputStream out_user = null;
+        ObjectOutputStream out_instrumento = null;
+        ObjectOutputStream out_albuns = null;
+        ObjectOutputStream out_musicas = null;
+        ObjectOutputStream out_sessoes = null;
+        ObjectOutputStream out_requisicoes = null;
+        
+        try {
+          out_user = new ObjectOutputStream(new BufferedOutputStream (new FileOutputStream("Utilizadores")));
+          out_instrumento = new ObjectOutputStream(new BufferedOutputStream (new FileOutputStream("Instrumentos")));
+          out_albuns = new ObjectOutputStream(new BufferedOutputStream (new FileOutputStream("Albuns")));
+          out_musicas = new ObjectOutputStream(new BufferedOutputStream (new FileOutputStream("Musicas")));
+          out_sessoes = new ObjectOutputStream(new BufferedOutputStream (new FileOutputStream("Sessoes")));
+          out_requisicoes = new ObjectOutputStream(new BufferedOutputStream (new FileOutputStream("Requisicoes")));
+          
+          out_user.writeObject(this.sistema.getUtilizadores());
+          out_instrumento.writeObject(this.sistema.getInstrumentos());
+          out_albuns.writeObject(this.sistema.getAlbuns());
+          out_musicas.writeObject(this.sistema.getMusicas());
+          out_sessoes.writeObject(this.sistema.getSessoes());
+          out_requisicoes.writeObject(this.sistema.getRequisicoes());
+          
+        }
+        finally {
+          if (out_user != null && out_instrumento != null && out_albuns != null && out_musicas != null && out_sessoes != null && out_requisicoes!=null)
+          { out_user.close(); out_instrumento.close(); out_albuns.close(); out_musicas.close(); out_sessoes.close(); out_requisicoes.close(); }
+        }
+    }
+    
+    public void ler2() throws IOException
+    {
+        this.sistema.getUtilizadores().clear();
+        this.sistema.getInstrumentos().clear();
+        this.sistema.getAlbuns().clear();
+        this.sistema.getMusicas().clear();
+        this.sistema.getSessoes().clear();
+        this.sistema.getRequisicoes().clear();
+        
+        ObjectInputStream in_user = null;
+        ObjectInputStream in_instrumento = null;
+        ObjectInputStream in_albuns = null;
+        ObjectInputStream in_musicas = null;
+        ObjectInputStream in_sessoes = null;
+        ObjectInputStream in_requisicoes = null;
+        
+        try {
+          //ficheiro utilizadores
+          in_user = new ObjectInputStream(new BufferedInputStream (new FileInputStream("Utilizadores")));
+          ArrayList<Utilizador> lista_user = (ArrayList<Utilizador>)in_user.readObject();
+          this.sistema.setUtilizadores(lista_user);
+          //ficheiro instrumentos
+          in_instrumento = new ObjectInputStream(new BufferedInputStream (new FileInputStream("Instrumentos")));
+          ArrayList<Instrumento> lista_instrumento = (ArrayList<Instrumento>)in_instrumento.readObject();
+          this.sistema.setInstrumentos(lista_instrumento);
+          //ficheiro albuns
+          in_albuns = new ObjectInputStream(new BufferedInputStream (new FileInputStream("Albuns")));
+          ArrayList<Album> lista_albuns = (ArrayList<Album>)in_albuns.readObject();
+          this.sistema.setAlbuns(lista_albuns);
+          //ficheiro musicas
+          in_musicas = new ObjectInputStream(new BufferedInputStream (new FileInputStream("Musicas")));
+          ArrayList<Musica> lista_musicas = (ArrayList<Musica>)in_musicas.readObject();
+          this.sistema.setMusicas(lista_musicas);
+          //ficheiro sessoes
+          in_sessoes = new ObjectInputStream(new BufferedInputStream (new FileInputStream("Sessoes")));
+          ArrayList<Sessao> lista_sessoes = (ArrayList<Sessao>)in_sessoes.readObject();
+          this.sistema.setSessoes(lista_sessoes);
+          //ficheiro requisicoes
+          in_requisicoes = new ObjectInputStream(new BufferedInputStream (new FileInputStream("Requisicoes")));
+          ArrayList<Requisicao> lista_requisicoes = (ArrayList<Requisicao>)in_requisicoes.readObject();
+          this.sistema.setRequisicoes(lista_requisicoes);
+        }
+        catch (Exception ex)
+        {
+        }
+        finally {
+          if (in_user != null && in_instrumento != null && in_albuns != null && in_musicas!=null && in_sessoes!=null)
+          { in_user.close(); in_instrumento.close(); in_albuns.close(); in_musicas.close(); in_sessoes.close(); }
+          
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,8 +117,10 @@ public class registoAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
         jButton1 = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
+        Carregar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -45,26 +130,41 @@ public class registoAdmin extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Terminar sessao");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Terminar_Sessao-removebg-preview.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 100, 30));
+
+        Guardar.setText("Guardar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
+
+        Carregar.setText("Carregar");
+        Carregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CarregarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Carregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Morabeza Administrador 640x360.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 360));
 
         jMenu2.setText("Registar");
 
@@ -125,26 +225,32 @@ public class registoAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem2);
 
+        jMenuItem1.setText("Lista de Requisicoes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
         jMenuBar1.add(jMenu3);
 
-        setJMenuBar(jMenuBar1);
+        jMenu1.setText("Estatisticas");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(jButton1)
-                .addContainerGap(142, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(38, 38, 38))
-        );
+        jMenuItem8.setText("Totais");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem8);
+
+        jMenuItem9.setText("No mes");
+        jMenu1.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -198,22 +304,58 @@ public class registoAdmin extends javax.swing.JFrame {
         la.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        listaRequisicoes lr = new listaRequisicoes(sistema);
+        lr.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        estatisticaTotal et = new estatisticaTotal(sistema);
+        et.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        // TODO add your handling code here:
+        try {
+            gravar2();
+        } catch (IOException ex) {
+            System.out.println("Erro ao gravar no Ficheiro");
+        }
+    }//GEN-LAST:event_GuardarActionPerformed
+
+    private void CarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarregarActionPerformed
+        // TODO add your handling code here:
+        try {
+            ler2();
+        } catch (IOException ex) {
+            System.out.println("Erro ao ler o Ficheiro");
+        }
+    }//GEN-LAST:event_CarregarActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Carregar;
+    private javax.swing.JButton Guardar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
