@@ -6,6 +6,7 @@ package frontend;
 import java.io.*;
 import java.util.ArrayList;
 import backend.*;
+import javax.swing.*;
 
 
 /**
@@ -23,6 +24,7 @@ public class registoAdmin extends javax.swing.JFrame {
     public registoAdmin(GestaoSistema lista) {
         initComponents();
         this.sistema = lista;
+        this.setLocationRelativeTo(null);
     }
     
     public void gravar2() throws IOException
@@ -52,7 +54,9 @@ public class registoAdmin extends javax.swing.JFrame {
         }
         finally {
           if (out_user != null && out_instrumento != null && out_albuns != null && out_musicas != null && out_sessoes != null && out_requisicoes!=null)
-          { out_user.close(); out_instrumento.close(); out_albuns.close(); out_musicas.close(); out_sessoes.close(); out_requisicoes.close(); }
+          { out_user.close(); out_instrumento.close(); out_albuns.close(); out_musicas.close(); out_sessoes.close(); out_requisicoes.close();
+               JOptionPane.showMessageDialog(this, "Os dados foram salvos no sistema");
+          }
         }
     }
     
@@ -103,7 +107,9 @@ public class registoAdmin extends javax.swing.JFrame {
         }
         finally {
           if (in_user != null && in_instrumento != null && in_albuns != null && in_musicas!=null && in_sessoes!=null)
-          { in_user.close(); in_instrumento.close(); in_albuns.close(); in_musicas.close(); in_sessoes.close(); }
+          { in_user.close(); in_instrumento.close(); in_albuns.close(); in_musicas.close(); in_sessoes.close(); 
+            JOptionPane.showMessageDialog(this, "Os dados foram carregados com sucesso");
+          }
           
         }
     }
@@ -146,21 +152,21 @@ public class registoAdmin extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 100, 30));
 
-        Guardar.setText("Guardar");
+        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Screenshot 2025-06-20 190008 (2).png"))); // NOI18N
         Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, -1, -1));
+        getContentPane().add(Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 100, 30));
 
-        Carregar.setText("Carregar");
+        Carregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Screenshot 2025-06-20 190730.png"))); // NOI18N
         Carregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CarregarActionPerformed(evt);
             }
         });
-        getContentPane().add(Carregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
+        getContentPane().add(Carregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 100, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Morabeza Administrador 640x360.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
