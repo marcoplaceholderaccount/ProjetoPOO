@@ -30,7 +30,7 @@ public class criarMusica extends javax.swing.JFrame {
         this.preencherTabela();
         modelMusicosSelecionados = new DefaultListModel<>();
         lstMusicosSelecionados.setModel(modelMusicosSelecionados);
-
+        this.setLocationRelativeTo(null);
     }
 
     public void preencherTabela() {

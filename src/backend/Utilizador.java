@@ -14,6 +14,7 @@ public abstract class Utilizador implements Serializable{
 
     public Utilizador(){}
 
+    //GETTERS
     public String getUserName() {
         return username;
     }
@@ -22,6 +23,7 @@ public abstract class Utilizador implements Serializable{
         return senha;
     }
 
+    //SETTERS
     public void setUsername(String username) {
         this.username = username;
     }

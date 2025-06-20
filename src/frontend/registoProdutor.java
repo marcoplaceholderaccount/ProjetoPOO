@@ -29,6 +29,7 @@ public class registoProdutor extends javax.swing.JFrame {
         this.sistema = lista;
         this.user = user;
         this.pass = pass;
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -101,10 +102,15 @@ public class registoProdutor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String nomeprod = nome_produtor.getText();
-        Produtor p = new Produtor(user,pass,nomeprod);
-        sistema.adicionarUtilizador(p);
-        JOptionPane.showMessageDialog(this, "Produtor criado com sucesso!");
-        this.dispose();
+        if(nomeprod.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Nome esta vazio!");
+        }
+        else{
+            Produtor p = new Produtor(user,pass,nomeprod);
+            sistema.adicionarUtilizador(p);
+            JOptionPane.showMessageDialog(this, "Produtor criado com sucesso!");
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

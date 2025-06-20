@@ -27,6 +27,7 @@ public class verSessoesDialog extends javax.swing.JDialog {
         this.sistema = lista;
         initComponents();
         this.preencherTabela();
+        this.setLocationRelativeTo(null);
         
     }
     
@@ -153,7 +154,7 @@ public class verSessoesDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "A sessao foi concluida!");
         }
         else{
-            System.out.println("Selecione uma sessao na tabela primeiro!");
+            JOptionPane.showMessageDialog(this, "Selecione uma sessao na tabela primeiro!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -27,6 +27,7 @@ public class registoMusico extends javax.swing.JFrame {
         this.sistema = lista;
         this.user = user;
         this.pass = pass;
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -154,10 +155,17 @@ public class registoMusico extends javax.swing.JFrame {
         String morada = morada_musico.getText();
         String cni = cni_musico.getText();
         
-        Musico m = new Musico(user,pass,nomemusic,morada,dataNa,cni);
-        sistema.adicionarUtilizador(m);
-        JOptionPane.showMessageDialog(this, "Musico criado com sucesso!");
-        this.dispose();
+        if(nomemusic.isEmpty() || dataNa.isEmpty() || morada.isEmpty() || cni.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Alguma informacao esta vazia!");
+        }
+        else{
+            Musico m = new Musico(user,pass,nomemusic,morada,dataNa,cni);
+            sistema.adicionarUtilizador(m);
+            JOptionPane.showMessageDialog(this, "Musico criado com sucesso!");
+            this.dispose();
+        }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

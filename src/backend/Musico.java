@@ -28,7 +28,6 @@ public Musico(String username,String senha,String nome, String morada, String da
 public Musico(){}
 
     //GETTERS
-    
      public String getDataNascimento() {
         return dataNascimento;
     }
@@ -68,13 +67,7 @@ public Musico(){}
         this.nome = nome;
     }
 
-    /*
-    @Override
-    public String toString() {
-        return "Musico{" + "nome=" + nome + ", dataNascimento=" + dataNascimento + ", morada=" + morada + ", numeroidentificacao=" + numeroidentificacao + ", instrumentos=" + instrumentos + ", requisicoes=" + requisicoes + '}';
-    }
-    */
-    
+//editar dados do musico    
  public void editarDados(String novoNome, String novaMorada, String novaData, String novoNumero ) {
     setNome(novoNome);
     setMorada(novaMorada);

@@ -34,6 +34,7 @@ public class fazerRequisicao extends javax.swing.JFrame {
         this.preencherTabela();
         modelInstrumentosSelecionados = new DefaultListModel<>();
         lstInstrumentosSelecionados.setModel(modelInstrumentosSelecionados);
+        this.setLocationRelativeTo(null);
     }
     
     public void preencherTabela() {

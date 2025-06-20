@@ -33,23 +33,25 @@ public class Requisicao implements Serializable{
         return musico;
     }
     
+    public String getData() {
+        return data;
+    }
+    
+    public ArrayList<Instrumento> getInstrumento() {
+        return instrumentos_req;
+    }
+  
+    public String getEstado() {
+        return estado;
+    }
+    
+    //Aceitar e recusar requisicoes
     public void aceitarReq(){
         this.estado = "Atribuido";
     }
     public void recusarReq(){
         this.estado = "Recusado";
     }
-
-    
-    public String getData() {
-        return data;
-    }
-    
-  
-    public String getEstado() {
-        return estado;
-    }
-    
     
     //SETTERS
     public void setSessao(Sessao sessao){
@@ -60,11 +62,7 @@ public class Requisicao implements Serializable{
         this.musico = musico;
     }
 
-    public ArrayList<Instrumento> getInstrumento() {
-        return instrumentos_req;
-    }
-
-
+    //adicionar instrumento na lista
     public void adicionarInstrumento(Instrumento instrumento) {
         if (instrumento.getEstado()){
             instrumento.setEstado(false);
@@ -74,7 +72,8 @@ public class Requisicao implements Serializable{
             System.out.println("Instrumento ja foi requerido.");
         }
     }
-     
+    
+    //remover instrumentos da lista e disponibiliza-los para uso
     public void liberarInstrumentos(){
         for (Instrumento i : instrumentos_req){
             i.setEstado(true);

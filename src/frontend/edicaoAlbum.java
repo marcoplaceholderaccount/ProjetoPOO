@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import backend.Produtor;
 import backend.Album;
 import backend.GestaoSistema;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,7 @@ public class edicaoAlbum extends javax.swing.JFrame {
         this.produtor = produtor;
         this.sistema = lista;
         this.preencherTabela();
+        this.setLocationRelativeTo(null);
         
     }
     
@@ -151,6 +153,9 @@ public class edicaoAlbum extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int selecao = tbAlbunsProd.getSelectedRow();
+        if(selecao<0){
+            JOptionPane.showMessageDialog(this, "Nao foi selecionado um album!");
+        }
         //colocar a data de inicio
         ArrayList<Album> albuns = this.produtor.getAlbunsProduzidos();
         for(int i = 0; i < albuns.size(); i++) {
@@ -169,6 +174,9 @@ public class edicaoAlbum extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         int selecao = tbAlbunsProd.getSelectedRow();
+        if(selecao<0){
+            JOptionPane.showMessageDialog(this, "Nao foi selecionado um album!");
+        }
         //selecao do album
         ArrayList<Album> albuns = this.produtor.getAlbunsProduzidos();
         //abrir dialog para ver as sessoes e conclui-las

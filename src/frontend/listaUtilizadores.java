@@ -7,6 +7,7 @@ package frontend;
 import backend.GestaoSistema;
 import backend.Utilizador;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -25,6 +26,7 @@ public class listaUtilizadores extends javax.swing.JFrame {
         initComponents();
         this.sistema = lista;
         this.preencherTabela();
+        this.setLocationRelativeTo(null);
     }
     
 
@@ -138,7 +140,12 @@ public class listaUtilizadores extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         int selecao = tbUtilizadores.getSelectedRow();
-        this.sistema.removerUtilizador(selecao);
+        if(selecao<0){
+            JOptionPane.showMessageDialog(this, "Nao foi selecionado um utilizador!");
+        }
+        else{
+            this.sistema.removerUtilizador(selecao);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

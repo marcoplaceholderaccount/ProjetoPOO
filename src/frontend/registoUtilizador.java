@@ -5,6 +5,7 @@
 package frontend;
 
 import backend.GestaoSistema;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,7 @@ public class registoUtilizador extends javax.swing.JFrame {
     public registoUtilizador(GestaoSistema lista) {
         initComponents();
         this.sistema = lista;
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -113,17 +115,21 @@ public class registoUtilizador extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String user = username_reg.getText();
-        String pass = password_reg.getText(); 
+        String pass = password_reg.getText();
         String tipo = tipo_reg.getSelectedItem().toString();
-        if (tipo.equals("Produtor")){
-            registoProdutor rp = new registoProdutor(sistema, user, pass);
-            rp.setVisible(true);
-            this.dispose();
-        }
-        else{
-            registoMusico rm = new registoMusico(sistema, user, pass);
-            rm.setVisible(true);
-            this.dispose();
+        if(user.isEmpty() || pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Alguma informacao esta vazia!");
+        } else {
+            if (tipo.equals("Produtor")){
+                registoProdutor rp = new registoProdutor(sistema, user, pass);
+                rp.setVisible(true);
+                this.dispose();
+            }
+            else{
+                registoMusico rm = new registoMusico(sistema, user, pass);
+                rm.setVisible(true);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

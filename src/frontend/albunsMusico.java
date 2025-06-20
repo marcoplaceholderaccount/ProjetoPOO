@@ -26,6 +26,7 @@ public class albunsMusico extends javax.swing.JFrame {
         this.musico = musico;
         this.sistema = lista;
         preencherTabela();
+        this.setLocationRelativeTo(null);
     }
     
     public void preencherTabela(){

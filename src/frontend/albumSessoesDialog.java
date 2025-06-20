@@ -26,6 +26,7 @@ public class albumSessoesDialog extends javax.swing.JDialog {
         this.sistema= lista;
         initComponents();
         receberDados();
+        this.setLocationRelativeTo(null);
     }
     
     public void receberDados(){
@@ -83,11 +84,16 @@ public class albumSessoesDialog extends javax.swing.JDialog {
 
     private void AtribuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtribuirActionPerformed
         // TODO add your handling code here:
-        Sessao novasessao = new Sessao(album,data_inicio.getText());
-        sistema.adicionarSessao(novasessao);
-        album.adicionarSessoes(novasessao);
-        JOptionPane.showMessageDialog(this, "A sessao foi agendada com sucesso!");
-        this.dispose();
+        if(data_inicio.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Data esta vazia!");
+        }
+        else{
+            Sessao novasessao = new Sessao(album,data_inicio.getText());
+            sistema.adicionarSessao(novasessao);
+            album.adicionarSessoes(novasessao);
+            JOptionPane.showMessageDialog(this, "A sessao foi agendada com sucesso!");
+            this.dispose();
+        }
     }//GEN-LAST:event_AtribuirActionPerformed
 
     /**

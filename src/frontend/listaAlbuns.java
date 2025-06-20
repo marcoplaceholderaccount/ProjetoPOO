@@ -24,6 +24,7 @@ public class listaAlbuns extends javax.swing.JFrame {
         initComponents();
         this.sistema = lista;
         this.preencherTabela();
+        this.setLocationRelativeTo(null);
     }
     
     public void preencherTabela() {

@@ -25,6 +25,7 @@ public class estatisticaTotal extends javax.swing.JFrame {
         this.sistema = lista;
         calcularTotal();
         calcularMedia();
+        this.setLocationRelativeTo(null);
     }
     
     

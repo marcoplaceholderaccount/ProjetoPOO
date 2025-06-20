@@ -20,6 +20,7 @@ public class dadosProdutor extends javax.swing.JFrame {
         initComponents();
         this.produtor = produtor;
         receberDados();
+        this.setLocationRelativeTo(null);
         
     }
     

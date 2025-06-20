@@ -20,6 +20,7 @@ public class dadosMusico extends javax.swing.JFrame {
         initComponents();
         this.musico = musico;
         receberDados();
+        this.setLocationRelativeTo(null);
     }
 
     public void receberDados(){

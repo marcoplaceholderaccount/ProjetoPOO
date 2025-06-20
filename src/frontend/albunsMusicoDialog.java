@@ -28,6 +28,7 @@ public class albunsMusicoDialog extends javax.swing.JDialog {
         this.musico = musico;
         initComponents();
         preencherTabela();
+        this.setLocationRelativeTo(null);
     }
     
     public void preencherTabela(){

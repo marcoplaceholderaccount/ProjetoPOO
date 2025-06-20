@@ -11,13 +11,14 @@ public class Musica implements Serializable {
  
  
 
-public Musica(String titulo, int duracao){
-    this.titulo = titulo;
-    this.duracao = duracao;
-    this.musicos = new ArrayList<>();
- }
+    public Musica(String titulo, int duracao){
+        this.titulo = titulo;
+        this.duracao = duracao;
+        this.musicos = new ArrayList<>();
+     }
+
+     public Musica(){}
  
- public Musica(){}
     //GETTERS
     public String getTitulo() {
         return titulo;
@@ -43,6 +44,7 @@ public Musica(String titulo, int duracao){
         this.musicos = musicos;
     }
     
+    //adicionar musico na lista
     public void adicionarMusico(Musico musico){
         this.musicos.add(musico);
     }

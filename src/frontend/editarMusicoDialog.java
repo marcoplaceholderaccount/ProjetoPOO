@@ -4,6 +4,8 @@
  */
 package frontend;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marco
@@ -18,6 +20,7 @@ public class editarMusicoDialog extends javax.swing.JDialog {
     public editarMusicoDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public void setDados(String nome, String dataNasc, String morada, String cni) {
@@ -57,7 +60,7 @@ public class editarMusicoDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        Confirmar = new javax.swing.JButton();
         campo_nome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -73,14 +76,14 @@ public class editarMusicoDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Confirmar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Confirmar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Confirmar.setText("Confirmar");
+        Confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 248, 115, -1));
+        getContentPane().add(Confirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 248, 115, -1));
 
         campo_nome.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         getContentPane().add(campo_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 70, 252, -1));
@@ -134,11 +137,15 @@ public class editarMusicoDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarActionPerformed
         // TODO add your handling code here:
-        confirmado = true;
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if(campo_nome.getText().equals("") || campo_data.getText().equals("") || campo_morada.getText().equals("") || campo_cni.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Alguma informacao esta vazia!");
+        } else{
+            confirmado = true;
+            this.dispose();
+        }
+    }//GEN-LAST:event_ConfirmarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -155,11 +162,11 @@ public class editarMusicoDialog extends javax.swing.JDialog {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Confirmar;
     private javax.swing.JTextField campo_cni;
     private javax.swing.JTextField campo_data;
     private javax.swing.JTextField campo_morada;
     private javax.swing.JTextField campo_nome;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

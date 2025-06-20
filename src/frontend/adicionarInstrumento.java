@@ -22,6 +22,7 @@ public class adicionarInstrumento extends javax.swing.JFrame {
     public adicionarInstrumento(GestaoSistema lista) {
         initComponents();
         this.sistema = lista;
+        this.setLocationRelativeTo(null);
     }
     
 
@@ -97,11 +98,16 @@ public class adicionarInstrumento extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nome = instrumento_nome.getText();
         String tipo = instrumento_tipo.getText();
-        Instrumento p = new Instrumento(nome, tipo);
-        sistema.adicionarInstrumento(p);
-        JOptionPane.showMessageDialog(this, "Instrumento criado com sucesso!");
-        instrumento_nome.setText("");
-        instrumento_tipo.setText("");
+        if (nome.isEmpty() || tipo.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Alguma informacao esta vazia!");
+        }
+        else{
+            Instrumento p = new Instrumento(nome, tipo);
+            sistema.adicionarInstrumento(p);
+            JOptionPane.showMessageDialog(this, "Instrumento criado com sucesso!");
+            instrumento_nome.setText("");
+            instrumento_tipo.setText("");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

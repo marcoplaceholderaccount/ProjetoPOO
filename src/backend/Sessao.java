@@ -25,10 +25,8 @@ public class Sessao implements Serializable {
 
 
     //GETTERS
-
     public boolean isConclusao(){
         return conclusao;
-        
     }
     
     public Album getAlbum(){
@@ -42,14 +40,8 @@ public class Sessao implements Serializable {
     public String getDataI(){
         return dataI;
     }
-
-    //SETTERS
-   
-    public void adicionarRequisicao(Requisicao requisicao) {
-        listareq.add(requisicao);
-    }
-   
-
+    
+    //Concluir sessao
     public void Concluir() {
         this.conclusao = true;
         LocalDateTime data = LocalDateTime.now();

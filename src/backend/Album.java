@@ -53,9 +53,8 @@ public class Album implements Serializable {
         return progresso;
     }
     
-    public void setProgresso(double percent){
-        this.progresso = percent;
-    }
+    
+    
     
     public Produtor getProdutor() {
         return produtor;
@@ -65,20 +64,21 @@ public class Album implements Serializable {
         return sessoes;
     }
     
-    //teste de estados vvvvvv
     public boolean getEstado(){
         return estado;
+    }
+     
+    //SETTERS
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
     
     public void setEstado(boolean estado){
         this.estado = estado;
     }
-    //teste de estados^^^^^
     
-    
-    //SETTERS
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setProgresso(double percent){
+        this.progresso = percent;
     }
     
     public void setDataEdicao() {
@@ -107,6 +107,8 @@ public class Album implements Serializable {
     public void setSessoes(ArrayList<Sessao> sessoes) {
         this.sessoes = sessoes;
     }
+    
+    //adicionar as listas do album
     
     //adicionar musica no album
     public void adicionarMusica(Musica musica){

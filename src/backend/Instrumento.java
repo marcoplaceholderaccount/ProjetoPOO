@@ -26,6 +26,7 @@ public class Instrumento implements Serializable {
     public boolean getEstado() {
         return estado;
     }
+    
     //SETTERS
     public void setNome(String nome) {
         this.nome = nome;

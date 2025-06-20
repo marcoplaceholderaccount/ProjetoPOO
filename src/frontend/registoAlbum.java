@@ -33,6 +33,7 @@ public class registoAlbum extends javax.swing.JFrame {
         this.preencherTabela();
         modelMusicasSelecionadas = new DefaultListModel<>();
         lstMusicasSelecionadas.setModel(modelMusicasSelecionadas);
+        this.setLocationRelativeTo(null);
     }
     
     public void preencherTabela() {

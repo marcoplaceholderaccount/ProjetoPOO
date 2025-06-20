@@ -56,6 +56,7 @@ public class GestaoSistema {
         return sessoes;
     }   
     
+    //SETTERS
     public void setUtilizadores(ArrayList<Utilizador> utilizadores) {
         this.utilizadores = utilizadores;
     }

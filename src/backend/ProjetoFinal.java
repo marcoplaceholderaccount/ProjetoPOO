@@ -20,8 +20,10 @@ public class ProjetoFinal {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        //Criar objeto sistema
         GestaoSistema sistema = new GestaoSistema();
         
+        //abrir tela de login
         telaLogin adm = new telaLogin(sistema);
         adm.setVisible(true);
         

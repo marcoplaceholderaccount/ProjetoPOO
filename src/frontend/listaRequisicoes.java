@@ -6,6 +6,7 @@ package frontend;
 import backend.GestaoSistema;
 import backend.Requisicao;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author marco
@@ -20,6 +21,7 @@ public class listaRequisicoes extends javax.swing.JFrame {
         this.sistema=lista;
         initComponents();
         preencherTabela();
+        this.setLocationRelativeTo(null);
     }
     
     public void preencherTabela(){
@@ -130,23 +132,31 @@ public class listaRequisicoes extends javax.swing.JFrame {
     private void recusarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recusarActionPerformed
         // TODO add your handling code here:
         int selecao = tbRequisicoes.getSelectedRow();
-        ArrayList<Requisicao> requisicoes = this.sistema.getRequisicoes();
-        //alterar o estado apenas se for pendente
-        if(requisicoes.get(selecao).getEstado().equals("Pendente")){
-        requisicoes.get(selecao).recusarReq();
+        if(selecao<0){
+            JOptionPane.showMessageDialog(this, "Nao foi selecionada uma requisicao!");
+        } else{
+            ArrayList<Requisicao> requisicoes = this.sistema.getRequisicoes();
+            //alterar o estado apenas se for pendente
+            if(requisicoes.get(selecao).getEstado().equals("Pendente")){
+            requisicoes.get(selecao).recusarReq();
+            }
+            JOptionPane.showMessageDialog(this, "Requisicao foi recusada");
         }
-        System.out.println("Requisicao foi recusada");
     }//GEN-LAST:event_recusarActionPerformed
 
     private void permitirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permitirActionPerformed
         // TODO add your handling code here:
         int selecao = tbRequisicoes.getSelectedRow();
-        ArrayList<Requisicao> requisicoes = this.sistema.getRequisicoes();
-        //alterar o estado apenas se for pendente
-        if(requisicoes.get(selecao).getEstado().equals("Pendente")){
-            requisicoes.get(selecao).aceitarReq();
+        if(selecao<0){
+            JOptionPane.showMessageDialog(this, "Nao foi selecionada uma requisicao!");
+        } else{
+            ArrayList<Requisicao> requisicoes = this.sistema.getRequisicoes();
+            //alterar o estado apenas se for pendente
+            if(requisicoes.get(selecao).getEstado().equals("Pendente")){
+                requisicoes.get(selecao).aceitarReq();
+            }
+            JOptionPane.showMessageDialog(this, "Requisicao foi atribuida");
         }
-        System.out.println("Requisicao foi atribuida");
     }//GEN-LAST:event_permitirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

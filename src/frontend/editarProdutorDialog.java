@@ -4,6 +4,8 @@
  */
 package frontend;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author marco
@@ -18,6 +20,7 @@ public class editarProdutorDialog extends javax.swing.JDialog {
     public editarProdutorDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public void setDados(String nome) {
@@ -86,8 +89,13 @@ public class editarProdutorDialog extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        confirmado = true;
-        this.dispose();
+        if(campo_nome.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Nome esta vazio!");
+        }
+        else{
+            confirmado = true;
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

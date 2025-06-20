@@ -32,6 +32,7 @@ public class telaLogin extends javax.swing.JFrame {
         }
         initComponents();
         this.sistema = lista;
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -117,24 +118,32 @@ public class telaLogin extends javax.swing.JFrame {
         //Abrir a janela "registoAdmin"
         String user = username.getText();
         String pass = password.getText();
+        
         if(user.equals("admin") && pass.equals("12345")){
             registoAdmin ra = new registoAdmin(sistema);
             ra.setVisible(true);
             this.setVisible(false);
         } 
         else{
-            for (Utilizador u : sistema.getUtilizadores()) {
-                if (u.getUserName().equals(user)){
+            if(!sistema.getUtilizadores().isEmpty()){
+                for (Utilizador u : sistema.getUtilizadores()) {
+                    if (!u.getUserName().equals(user)){
+                        JOptionPane.showMessageDialog(null, 
+                        "Utilizador ou senha incorretos!", 
+                        "Erro de Validação", 
+                        JOptionPane.ERROR_MESSAGE);
+                        break;
+                    }
                     if (u.getSenha().equals(pass)) {
                         if (u instanceof Produtor) {
-                            Produtor p = (Produtor) u; // Cast para Produtor
+                            Produtor p = (Produtor) u; // cast para Produtor
                             telaProdutor tp = new telaProdutor(sistema,p);
                             tp.setVisible(true);
                             this.dispose();
                             return;                            
                         }
                         else if(u instanceof Musico) {
-                            Musico m = (Musico) u;
+                            Musico m = (Musico) u; // cast para Musico
                             telaMusico tm= new telaMusico(sistema,m);
                             tm.setVisible(true);
                             this.dispose();
@@ -142,8 +151,14 @@ public class telaLogin extends javax.swing.JFrame {
                         }
                     }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, 
+                "Ainda nao existem utilizadores", 
+                "Erro de Sistema", 
+                JOptionPane.ERROR_MESSAGE);
             }
         }
+        
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
