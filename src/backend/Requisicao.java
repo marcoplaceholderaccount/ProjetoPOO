@@ -61,8 +61,12 @@ public class Requisicao implements Serializable{
     public void setMusico(Musico musico){
         this.musico = musico;
     }
-
-    //adicionar instrumento na lista
+    
+    /** 
+    *
+    * @param instrumento instancia do tipo instrumento
+    * <p>Adicione um instrumento na lista de instrumento da requisicao e torna o indisponivel</p>
+    */
     public void adicionarInstrumento(Instrumento instrumento) {
         if (instrumento.getEstado()){
             instrumento.setEstado(false);
@@ -73,7 +77,10 @@ public class Requisicao implements Serializable{
         }
     }
     
-    //remover instrumentos da lista e disponibiliza-los para uso
+    /** 
+    *
+    * <p>Remove os instrumentos da lista de instrumentos da requisicao e torna os disponiveis novamente</p>
+    */
     public void liberarInstrumentos(){
         for (Instrumento i : instrumentos_req){
             i.setEstado(true);

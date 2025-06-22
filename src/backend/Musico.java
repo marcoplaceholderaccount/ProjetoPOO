@@ -67,7 +67,15 @@ public Musico(){}
         this.nome = nome;
     }
 
-//editar dados do musico    
+
+    /** 
+    *
+    * @param novoNome parametro do tipo string 
+    * @param novaMorada parametro do tipo string
+    * @param novaData parametro do tipo string
+    * @param novoNumero parametro do tipo string
+    * <p>Editar dados do musico</p>
+    */    
  public void editarDados(String novoNome, String novaMorada, String novaData, String novoNumero ) {
     setNome(novoNome);
     setMorada(novaMorada);
@@ -76,7 +84,11 @@ public Musico(){}
  }
 
  
- // ver albuns associados
+    /** 
+    *
+    * @param todosAlbuns lista de todos os albuns do sistema
+    * <p>Filtra os albuns em que o musico participa de pelo menos uma musica</p>
+    */
 public ArrayList<Album> getAlbunsAssociados(ArrayList<Album> todosAlbuns) {
     ArrayList<Album> albuns = new ArrayList<>();
     
@@ -94,7 +106,11 @@ public ArrayList<Album> getAlbunsAssociados(ArrayList<Album> todosAlbuns) {
     return albuns;
 }
 
-// ver sessoes agendadas nos albuns em que 
+/** 
+    *
+    * @param todosAlbuns lista de todos os albuns do sistema
+    * <p>Filtra as sessoes em que o musico participa e que nao estao concluidas</p>
+    */
 public ArrayList<Sessao> getSessoesAgendadas(ArrayList<Album> todosAlbuns) {
     ArrayList<Sessao> sessoesAgendadas = new ArrayList<>();
     

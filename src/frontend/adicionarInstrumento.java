@@ -11,6 +11,7 @@ import javax.swing.*;
 /**
  *
  * @author marco
+ * @version 1.0
  */
 public class adicionarInstrumento extends javax.swing.JFrame {
 
@@ -19,6 +20,11 @@ public class adicionarInstrumento extends javax.swing.JFrame {
      */
     GestaoSistema sistema;
     
+    /**
+     * 
+     * @param lista 
+     * 
+     */
     public adicionarInstrumento(GestaoSistema lista) {
         initComponents();
         this.sistema = lista;
@@ -116,7 +122,7 @@ public class adicionarInstrumento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
-     * @param args the command line arguments
+     * 
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

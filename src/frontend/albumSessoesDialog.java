@@ -96,9 +96,6 @@ public class albumSessoesDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_AtribuirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atribuir;

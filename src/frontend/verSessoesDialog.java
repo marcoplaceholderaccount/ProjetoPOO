@@ -186,9 +186,6 @@ public class verSessoesDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_VoltarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -129,10 +129,7 @@ public class telaMusico extends javax.swing.JFrame {
         fr.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

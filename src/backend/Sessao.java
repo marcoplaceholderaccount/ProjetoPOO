@@ -41,7 +41,10 @@ public class Sessao implements Serializable {
         return dataI;
     }
     
-    //Concluir sessao
+    /** 
+    *
+    * <p>Conclui a sessao e atribui a sua data de conclusao</p>
+    */
     public void Concluir() {
         this.conclusao = true;
         LocalDateTime data = LocalDateTime.now();

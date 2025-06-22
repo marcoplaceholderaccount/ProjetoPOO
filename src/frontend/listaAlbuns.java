@@ -27,6 +27,10 @@ public class listaAlbuns extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
+    /** 
+    *
+    * <p>Preencher a tabela (que funciona como um array) com uma lista especifica</p>
+    */
     public void preencherTabela() {
         ArrayList<Album> albuns = this.sistema.getAlbuns();
         for(int i = 0; i < albuns.size(); i++) {
@@ -126,9 +130,6 @@ public class listaAlbuns extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

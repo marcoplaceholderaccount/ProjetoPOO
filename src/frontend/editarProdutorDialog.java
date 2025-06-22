@@ -103,9 +103,6 @@ public class editarProdutorDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

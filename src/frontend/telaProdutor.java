@@ -143,9 +143,7 @@ public class telaProdutor extends javax.swing.JFrame {
         ea.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+ 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

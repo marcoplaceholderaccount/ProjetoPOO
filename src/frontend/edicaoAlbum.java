@@ -184,9 +184,6 @@ public class edicaoAlbum extends javax.swing.JFrame {
         vsd.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

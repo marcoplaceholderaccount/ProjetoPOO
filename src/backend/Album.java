@@ -120,7 +120,10 @@ public class Album implements Serializable {
         this.sessoes.add(sessao);
     }
     
-    //calcular percentagem de sessoes (em string) concluidas do album
+    /** 
+    *
+    * <p>Calcula o progresso de conclusao de sessoes do album</p>
+    */
     public String calcularProgresso(){
         double percentagem;
         int numsessoes = this.sessoes.size();

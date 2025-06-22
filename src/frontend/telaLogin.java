@@ -127,30 +127,29 @@ public class telaLogin extends javax.swing.JFrame {
         else{
             if(!sistema.getUtilizadores().isEmpty()){
                 for (Utilizador u : sistema.getUtilizadores()) {
-                    if (!u.getUserName().equals(user)){
-                        JOptionPane.showMessageDialog(null, 
-                        "Utilizador ou senha incorretos!", 
-                        "Erro de Validação", 
-                        JOptionPane.ERROR_MESSAGE);
-                        break;
-                    }
-                    if (u.getSenha().equals(pass)) {
-                        if (u instanceof Produtor) {
-                            Produtor p = (Produtor) u; // cast para Produtor
-                            telaProdutor tp = new telaProdutor(sistema,p);
-                            tp.setVisible(true);
-                            this.dispose();
-                            return;                            
+                    if (u.getUserName().equals(user)){
+                        if (u.getSenha().equals(pass)) {
+                            if (u instanceof Produtor) {
+                                Produtor p = (Produtor) u; // cast para Produtor
+                                telaProdutor tp = new telaProdutor(sistema,p);
+                                tp.setVisible(true);
+                                this.dispose();
+                                return;                            
+                                }
+                            else if(u instanceof Musico) {
+                                Musico m = (Musico) u; // cast para Musico
+                                telaMusico tm= new telaMusico(sistema,m);
+                                tm.setVisible(true);
+                                this.dispose();
+                                return;
+                            }
                         }
-                        else if(u instanceof Musico) {
-                            Musico m = (Musico) u; // cast para Musico
-                            telaMusico tm= new telaMusico(sistema,m);
-                            tm.setVisible(true);
-                            this.dispose();
-                            return;
-                        }
-                    }
+                    }   
                 }
+            JOptionPane.showMessageDialog(null, 
+                "Utilizador ou senha incorretos!", 
+                "Erro de Validação", 
+                JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, 
                 "Ainda nao existem utilizadores", 
@@ -172,9 +171,6 @@ public class telaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

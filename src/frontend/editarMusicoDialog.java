@@ -156,9 +156,6 @@ public class editarMusicoDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_cniActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -287,9 +287,6 @@ public class fazerRequisicao extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removerActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionar;

@@ -93,15 +93,30 @@ public class GestaoSistema {
     
     //ADICIONAR E REMOVER DA LISTA
     
+    /** 
+    *
+    * @param album instancia do tipo album
+    * <p>Adiciona um album na listaAlbum</p>
+    */
     public void adicionarAlbum(Album album){
         albuns.add(album);
         System.out.println("Album adicionado com sucesso: " + album.getTitulo());
     }
     
+    /** 
+    *
+    * @param req instancia do tipo requisicao
+    * <p>Adiciona uma requisicao na listaRequisicoes</p>
+    */
     public void adicionarRequisicao(Requisicao req){
         requisicoes.add(req);
     }
     
+    /** 
+    *
+    * @param instrumento instancia do tipo instrumento
+    * <p>Adiciona um instrumento na listaInstrumentos</p>
+    */
     public void adicionarInstrumento(Instrumento instrumento) {
     if (instrumento != null) {
         instrumentos.add(instrumento);
@@ -111,6 +126,11 @@ public class GestaoSistema {
         }
     }
    
+    /** 
+    *
+    * @param posicao parametro inteiro que indica a posicao na tabela
+    * <p>Remove um instrumento na listaInstrumentos</p>
+    */
     public void removerInstrumento(int posicao){
         if(posicao < instrumentos.size()){
             System.out.println("Instrumento removido: " + instrumentos.get(posicao).getNome());
@@ -121,6 +141,11 @@ public class GestaoSistema {
         }
     }
     
+    /** 
+    *
+    * @param utilizador instancia do tipo utilizador
+    * <p>Adiciona um utilizador na listaUtilizadores</p>
+    */
     public void adicionarUtilizador(Utilizador utilizador) {
         if (utilizador == null) {
             System.out.println("Utilizador inválido.");
@@ -139,6 +164,11 @@ public class GestaoSistema {
         System.out.println("Utilizador adicionado: " + utilizador.getUserName());
     }
     
+    /** 
+    *
+    * @param posicao parametro inteiro que indica a posicao na tabela
+    * <p>Remove um utilizador na listaUtilizadores</p>
+    */
     public void removerUtilizador(int posicao){
         if(posicao < utilizadores.size()){
             System.out.println("Utilizador removido: " + utilizadores.get(posicao).getUserName());
@@ -150,10 +180,20 @@ public class GestaoSistema {
         
     }
     
+    /** 
+    *
+    * @param musica instancia do tipo musica
+    * <p>Adiciona uma musica na listaMusicas</p>
+    */
     public void adicionarMusica(Musica musica) {
         this.musicas.add(musica);
     }
     
+    /** 
+    *
+    * @param sessao instancia do tipo sessao
+    * <p>Adiciona uma sessao na listaSessoes</p>
+    */
     public void adicionarSessao(Sessao sessao) {
         this.sessoes.add(sessao);
     }
