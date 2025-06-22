@@ -27,6 +27,10 @@ public class registoAdmin extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
+    /** 
+    *
+    * <p>Guarda todas as listas da classe GestaoSistema em ficheiros</p>
+    */
     public void gravar2() throws IOException
     {
         ObjectOutputStream out_user = null;
@@ -60,6 +64,10 @@ public class registoAdmin extends javax.swing.JFrame {
         }
     }
     
+    /** 
+    *
+    * <p>Carregar todas as listas da classe GestaoSistema em ficheiros</p>
+    */
     public void ler2() throws IOException
     {
         this.sistema.getUtilizadores().clear();
@@ -340,9 +348,6 @@ public class registoAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CarregarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
